@@ -1,0 +1,43 @@
+# note: to render for stata, run "quarto render --profile stata"
+
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Software Companion Guides"
+  author: "Nathan Favero"
+  date: "8/30/2026"
+  chapters:
+    - index.qmd
+    - part: "Ch. 1: Getting Started"
+      chapters:
+      - 01-intro.qmd
+      - 01-simple-graphs.qmd
+      - 01-var-types.qmd
+      - 01-lab.qmd
+    - part: "Ch. 2: Description, File Types"
+      chapters:
+      - 02-descriptive-stats.qmd
+      - 02-file-types.qmd
+      - 02-importing-files.qmd
+      - 02-lab.qmd
+    - part: "Ch. 3: Transformations, Associations"
+      chapters:
+      - 03-transformations.qmd
+      - 03-associations.qmd
+      - 03-regression.qmd
+      - 03-lab.qmd
+    - part: "Ch. 4: Qualitative Variables"
+      chapters:
+      - 04-qual-quant-comparisons.qmd
+      - 04-qual-qual-comparisons.qmd
+      - 04-regression.qmd
+      - 04-lab.qmd
+
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: superhero

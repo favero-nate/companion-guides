@@ -1,0 +1,79 @@
+# Introduction {.unnumbered}
+
+Dataset source: <https://onlinestatbook.com/2/case_studies/binge.html>
+
+::: {.content-visible when-profile="stata"}
+{{< video https://youtu.be/qChry-CfQzM >}}
+
+## Key concepts/commands:
+
+1.  `use`: load in a dataset
+
+    ```         
+    use "https://learndata.net/binge.dta"
+    ```
+
+2.  `clear`: empty out any dataset so a new one can be loaded in
+
+    ```         
+    clear
+    ```
+
+3.  To make a simple comment in a do-file, use `//` or `*`
+
+    ```         
+    // This is a note to myself, called a "comment"
+    * Here is another way to leave a note
+    ```
+
+4.  To make a multi-line (or partial-line) comment, use `/*` to start and `*/` to end
+
+    ```         
+    /*
+    Here is a rather long comment.
+    Maybe it is a note about how some of
+    the variables were measured.
+    */
+    ```
+:::
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+# This is a note to myself, called a "comment"
+data <- read.csv("https://learndata.net/binge.csv")
+View(data)
+data$sex_text
+```
+
+## Key concepts/syntax:
+
+1.  `read.csv()`: load in a dataset stored in "csv" format
+
+    ``` r
+    data <- read.csv("https://learndata.net/binge.csv")
+    ```
+
+2.  `View()`: show the data in a spreadsheet view
+
+    ``` r
+    View(data)
+    ```
+
+3.  referring to variables within a dataset: usually when you refer to a variable you also need to indicate the dataset, sometimes you can use `$` to connect the name of the dataset to the name of the variable (column)
+
+    ``` r
+    data$sex_text
+    ```
+
+4.  clear out workspace: in RStudio, click the broom icon in the "environment"
+
+5.  To leave a comment in an R script, use `#`
+
+    ``` r
+    # This is a note to myself, called a "comment"
+    ```
+
+6.  Comment (or uncomment) several lines in a row: in RStudio, select the lines in the R script you want to modify, and then from the drop-down menu select Code \> Comment/Uncomment Lines
+:::

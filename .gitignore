@@ -1,0 +1,5 @@
+/_book/
+/.Rproj.user/
+/.quarto/
+.bak
+**/*.quarto_ipynb

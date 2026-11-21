@@ -1,0 +1,78 @@
+# Descriptive Statistics {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+{{< video https://youtu.be/IBingk5fM3I >}}
+
+## Key concepts/commands:
+
+1.  `sum`: show descriptive statistics for quantitative variables
+
+    ```         
+    sum modrunk u_fam, detail
+    ```
+
+2.  `*` and `?`: wildcard characters
+
+    ```         
+    sum ?_*
+    ```
+
+3.  `tab modrunk`: show a frequency table
+
+    ```         
+    tab modrunk
+    ```
+:::
+
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+data <- read.csv("https://learndata.net/binge.csv")
+
+# Descriptive statistics for quantitative variables
+
+summary(data)
+summary(data$modrunk)
+summary(data$u_fam)
+
+#install.packages("psych")  # uncomment if psych package not installed
+library(psych)
+describe(data)
+
+# Frequency tables (especially useful for qualitative variables)
+
+table(data$modrunk)
+prop.table(table(data$modrunk))
+
+table(data$sex_text)
+prop.table(table(data$sex_text))
+```
+
+## Key concepts/syntax:
+
+1.  `summary()`: show some descriptive statistics (for quantitative variables), can be used in other ways too
+
+    ``` r
+    summary(data)
+    ```
+
+2.  `describe()`: more detailed descriptive statistics for quantitative variables, using the `psych` package
+
+    ``` r
+    describe(data)
+    ```
+
+3.  `table()`: can be used to create a frequency table
+
+    ``` r
+    table(data$modrunk)
+    ```
+
+4.  `prop.table()`: can be used to convert frequencies in a table to proportions
+
+    ``` r
+    prop.table(table(data$modrunk))
+    ```
+:::

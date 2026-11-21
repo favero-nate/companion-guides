@@ -1,0 +1,151 @@
+# Transforming Variables {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+{{< video https://youtu.be/AAvol-h38zw >}}
+
+## Key concepts/commands:
+
+1.  `destring`: convert a string variable to a numeric variable
+
+    ```         
+    destring iep blackhispanic ell thgrmathela, replace ignore("%" "#VALUE!")
+    ```
+
+2.  `rename`: rename a variable
+
+    ```         
+    rename thgrmathela combined_score
+    ```
+
+3.  `gen`: create a new variable
+
+    ```         
+    gen z_ell = (ell - 13.79202) / 12.33479
+    ```
+
+4.  `log()`: a function to create a log transformation (based on the natural log)
+
+    ```         
+    gen log_ell = log(ell)
+    ```
+
+5.  `order`: rearrange the ordering of variables
+
+    ```         
+    order log_ell, after(ell)
+    ```
+
+6.  `drop`: delete variables (or delete observations, as we will learn about later)
+
+    ```         
+    drop z_ell
+    ```
+
+7.  `egen`: another way to create a new variable, relying on a specific set of functions for creating new variables
+
+    ```         
+    egen z_ell = std(ell)
+    ```
+:::
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+#install.packages("tidyverse")  # uncomment if tidyverse not installed
+library(haven)
+library(tidyverse)
+
+data <- read_dta("https://learndata.net/nycschools.dta")
+
+# convert quantitative variables currently
+# stored as characters to numbers
+data <- data |> mutate(iep = parse_number(iep))
+data <- data |> mutate(blackhispanic = parse_number(blackhispanic))
+data <- data |> mutate(ell = parse_number(ell))
+data <- data |> mutate(thgrmathela = parse_number(thgrmathela))
+
+# rename thgrmathela to something more descriptive
+data <- data |> rename(combined_score = thgrmathela)
+
+# log transform the ell variable
+data <- data |> mutate(log_ell = log(ell))
+
+# relocate new variable to be next to the original
+data <- data |> relocate(log_ell, .after = ell)
+
+# standard ell manually based on summary statistics
+#install.packages("psych")  # uncomment if psych not installed
+library(psych)
+describe(data$ell)
+data <- data |> mutate(z_ell = (ell - 13.79) / 12.33)
+
+# drop the standardized variable and then recreate
+# it with simpler automated syntax, using scale()
+data <- data |> select(!z_ell)
+data <- data |> mutate(z_ell = scale(ell))
+data <- data |> relocate(z_ell, .after = ell)
+```
+
+## Key concepts/syntax:
+
+1.  `|>`: this is called a "pipe" (sometimes also written as `%>%`), here we use it to connect our dataset (`data`) to a data manipulation function (e.g., `mutate()`, `rename()`)[^03-transformations-1]
+
+    ``` r
+    data <- data |> mutate(iep = parse_number(iep))
+    ```
+
+2.  `mutate()`: create a new variable (or overwrite an existing one), using the `dplyr` package which can be loaded in with `library(tidyverse)`[^03-transformations-2]
+
+    ``` r
+    data <- data |> mutate(z_ell = (ell - 13.79) / 12.33)
+    ```
+
+3.  `parse_number()`: convert a character variable to a numeric one by ignoring all non-numeric characters[^03-transformations-3]
+
+    ``` r
+    data <- data |> mutate(iep = parse_number(iep))
+    ```
+
+4.  `rename()`: rename a variable, using the `dplyr` package
+
+    ``` r
+    data <- data |> rename(combined_score = thgrmathela)
+    ```
+
+5.  `log()`: a function to create a log transformation (based on the natural log)
+
+    ``` r
+    data <- data |> mutate(log_ell = log(ell))
+    ```
+
+6.  `relocate()`: rearrange the ordering of variables, using the `dplyr` package
+
+    ``` r
+    data <- data |> relocate(log_ell, .after = ell)
+    ```
+
+7.  `select()`: select only a subset of variables (e.g., all but `z_ell`), using the `dplyr` package
+
+    ``` r
+    data <- data |> select(!z_ell)
+    ```
+
+8.  `!`: means "not" (e.g., as is "not this variable")
+
+    ``` r
+    data <- data |> select(!z_ell)
+    ```
+
+9.  `scale()`: standardize a set of values (e.g., from a variable)
+
+    ``` r
+    data <- data |> mutate(z_ell = scale(ell))
+    ```
+:::
+
+[^03-transformations-1]: For a more complete explanation, see <https://r4ds.hadley.nz/data-transform.html#sec-the-pipe>
+
+[^03-transformations-2]: For more explanation of this and most other functions used in this section, see <https://r4ds.hadley.nz/data-transform.html#columns>
+
+[^03-transformations-3]: For more explanation, see <https://r4ds.hadley.nz/numbers.html#making-numbers>

@@ -1,0 +1,142 @@
+# Simple Graphs {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+{{< video https://youtu.be/80etyGGtmPw >}}
+
+## Key concepts/commands:
+
+1.  `graph bar`: create a simple bar graph
+
+    ```         
+    graph bar, over(sex_text)
+    ```
+
+2.  `graph pie`: create a simple pie chart
+
+    ```         
+    graph pie, over(sex_text)
+    ```
+
+3.  `hist`: create a histogram
+
+    ```         
+    hist modrunk
+    ```
+
+4.  `kdensity`: create a k-density plot
+
+    ```         
+    kdensity modrunk
+    ```
+
+5.  `graph box`: create a boxplot
+
+    ```         
+    graph box modrunk, hor
+    ```
+
+6.  `findit`: find a package to install
+
+    ```         
+    findit vioplot
+    ```
+
+7.  `vioplot`: create a violin plot (requires installation of user package)
+
+    ```         
+    vioplot modrunk, hor
+    ```
+
+8.  `stripplot`: create a strip plot (requires installation of user package)
+
+    ```         
+    stripplot modrunk, jitter(10) 
+    ```
+:::
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+data <- read.csv("https://learndata.net/binge.csv")
+
+# Graphs for qualitative variables (using variable sex_text)
+
+barplot(table(data$sex_text))
+
+pie(table(data$sex_text))
+
+# Graphs for quantitative variables (using variable modrunk)
+
+hist(data$modrunk)
+
+plot(density(data$modrunk))
+
+boxplot(data$modrunk)
+boxplot(data$modrunk, horizontal = TRUE)
+
+stripchart(data$modrunk)
+stripchart(data$modrunk, method = "jitter")
+
+install.packages("vioplot")
+library(vioplot)
+vioplot(data$modrunk)
+vioplot(data$modrunk, horizontal = TRUE)
+```
+
+## Key concepts/syntax:
+
+1.  `barplot(table())`: create a simple bar graph
+
+    ``` r
+    barplot(table(data$sex_text))
+    ```
+
+2.  `pie(table())`: create a simple pie chart
+
+    ``` r
+    pie(table(data$sex_text))
+    ```
+
+3.  `hist()`: create a histogram
+
+    ``` r
+    hist(data$modrunk)
+    ```
+
+4.  `plot(density())`: create a k-density plot
+
+    ``` r
+    plot(density(data$modrunk))
+    ```
+
+5.  `boxplot()`: create a boxplot
+
+    ``` r
+    boxplot(data$modrunk, horizontal = TRUE)
+    ```
+
+6.  `stripchart()`: create a strip plot
+
+    ``` r
+    stripchart(data$modrunk, method = "jitter")
+    ```
+
+7.  `install.packages()`: install a package
+
+    ``` r
+    install.packages("vioplot")
+    ```
+
+8.  `library()`: load in a package (for this session)
+
+    ``` r
+    library(vioplot)
+    ```
+
+9.  `vioplot`: create a violin plot, using the `vioplot` package
+
+    ``` r
+    vioplot(data$modrunk, horizontal = TRUE)
+    ```
+:::

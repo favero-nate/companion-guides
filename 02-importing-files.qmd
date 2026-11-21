@@ -1,0 +1,102 @@
+# Importing Files {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+{{< video https://youtu.be/alrUd8coFro >}}
+
+## Key concepts/commands:
+
+1.  `cd`: set the "working directory," which is the default folder on your computer in which Stata will look for files and output files
+
+    ```         
+    cd "C:\Users\favero\OneDrive - american.edu\minus the math\companion guides\datasets\02\example files"
+    ```
+
+2.  `import excel`: read in an Excel document as a dataset
+
+    ```         
+    import excel using binge.xls, firstrow
+    ```
+
+3.  `help`: used to access Stata help files, often for a specific command
+
+    ```         
+    help import excel
+    ```
+
+4.  `insheet`: old command to read in a plain text file
+
+    ```         
+    insheet using binge.tab
+    ```
+
+5.  `import delimited`: a newer way to read in a delimited plain text file
+
+    ```         
+    import delimited binge.csv
+    ```
+:::
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+# Note: you'll first need to download binge.zip,
+# available at https://learndata.net/binge.zip
+# Then, edit the following line to match the folder
+# where this file is located.
+setwd("C:/Users/favero/Downloads")
+
+unzip("binge.zip")
+
+data_from_tab <- read.delim("binge.tab")
+?read.delim
+
+#install.packages("tidyverse")  # uncomment if tidyverse not installed
+library(readxl)
+data_from_xls <- read_excel("binge.xls")
+
+library(haven) #this is also installed with tidyverse
+data_from_dta <- read_dta("binge.dta")
+```
+
+## Key concepts/syntax:
+
+1.  `setwd()`: set the "working directory," which is the default folder on your computer in which Stata will look for files and output files
+
+    ``` r
+    setwd("C:/Users/favero/learn data/example files")
+    ```
+
+2.  `unzip()`: unzip (extract) a zip file
+
+    ``` r
+    unzip("binge.zip")
+    ```
+
+3.  `read.delim()`: read in a delimited file (tab delimited by default)
+
+    ``` r
+    data_from_tab <- read.delim("binge.tab")
+    ```
+
+4.  `?`: open a help file for a function or package
+
+    ``` r
+    ?read.delim
+    ```
+
+5.  `read_excel()`: read in an Excel (xls or xlsx) file, using the `readr` package[^02-importing-files-1]
+
+    ``` r
+    data_from_xls <- read_excel("binge.xls")
+    ```
+
+6.  `read_dta()`: read in a Stata (dta) file, using the `haven` package
+
+    ``` r
+    data_dta <- read_dta("binge.dta")
+    ```
+
+:::
+
+[^02-importing-files-1]: Note this reads the data in using tidyverse format (a "tibble"). If you like that format or use other resources that rely on the tidyverse, you can import other files using tidyverse commands. For example, you can read csv files with `read_csv()` and tab-delimited files with `read_tsv()`. Both functions are from the `readr` package, which you can accessing by installing `tidyverse` and running `library(tidyverse)`.

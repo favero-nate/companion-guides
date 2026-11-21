@@ -1,0 +1,141 @@
+# Qualitative-Qualitative Relationships {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+{{< video https://youtu.be/rb7EV4fZ7DE >}}
+
+## Key concepts/commands:
+
+1.  `col` and `row` options with `tab`: show percentages by column/row in a two-way table
+
+    ```         
+    tab schooltype overallgrade, col
+    ```
+
+2.  `title()` option: add a title at the top (of a graph)
+
+    ```         
+    graph bar, over(overallgrade) over(schooltype) title("Overall school grade by school type")
+    ```
+
+3.  `ylabels()` option: choose the y axis labels (for a graph)
+
+    ```         
+    graph bar, over(overallgrade) over(schooltype) ylabels(0 10 20 30)
+    ```
+
+4.  `#(#)#` where each `#` is replaced with a specific number: indicate a sequence of numbers, counting up by a fixed amount
+
+    ```         
+    graph bar, over(overallgrade) over(schooltype) ylabels(0(10)30)
+    ```
+
+5.  `rows()` option with a `by()` option: choose the number of rows to use
+
+    ```         
+    graph bar, over(overallgrade) by(schooltype, rows(1))
+    ```
+
+6.  `stack asyvars percentage` options: make a bar chart into a stacked bar chart
+
+    ```         
+    graph bar, over(overallgrade) over(schooltype) stack asyvars percentage 
+    ```
+:::
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+#install.packages("tidyverse")  # uncomment if tidyverse not installed
+#install.packages("gmodels")  # uncomment if gmodels not installed
+library(haven)
+library(tidyverse)
+library(gmodels)
+
+data <- read_dta("https://learndata.net/nycschools.dta")
+
+# basic data processing needed to use this dataset, copied from Ch. 3:
+  # convert quantitative variables currently
+  # stored as characters to numbers
+  data <- data |> mutate(iep = parse_number(iep))
+  data <- data |> mutate(blackhispanic = parse_number(blackhispanic))
+  data <- data |> mutate(ell = parse_number(ell))
+  data <- data |> mutate(thgrmathela = parse_number(thgrmathela))
+  
+  # rename thgrmathela to something more descriptive
+  data <- data |> rename(combined_score = thgrmathela)
+
+# we can use the CrossTable function from gmodels to make crosstabs
+# first, we create a table using default settings:
+CrossTable(data$schooltype, data$overallgrade)
+
+# the table above is very wide and may be difficult to read
+# let's switch the order in which we list our two variable so that
+# the variable with more values (overallgrade) will be shown as
+# rows rather than columns
+CrossTable(data$overallgrade, data$schooltype)
+
+# by default, many proportions are shown below each frequency
+# let's turn off all proportions except prop.r (row proportions)
+CrossTable(data$overallgrade, data$schooltype, prop.c = FALSE, prop.t = FALSE, prop.chisq = FALSE)
+
+# an alternative if we prefer seeing column proportions:
+CrossTable(data$overallgrade, data$schooltype, prop.r = FALSE, prop.t = FALSE, prop.chisq = FALSE)
+
+# as in part 1, we will convert overallgrade to a factor
+# variable
+data <- data |>
+  mutate(grade_factor = factor(overallgrade, exclude = ""))
+
+# make a simple bar chart with the ggplot2 package (part of core tidyverse)
+data |>
+  ggplot(aes(grade_factor)) +
+  geom_bar()
+
+# filter out the observations where grade_factor is missing (NA)
+data |>
+  filter(!is.na(grade_factor)) |>
+  ggplot(aes(grade_factor)) +
+  geom_bar()
+
+# create a grouped bar graph, grouping by schooltype
+data |>
+  filter(!is.na(grade_factor)) |>
+  ggplot(aes(grade_factor)) +
+  geom_bar() +
+  facet_wrap(~ schooltype)
+
+# sometimes it is helpful to adjust the nrow option within
+# facet_wrap()
+# for example, we can use three rows so our subgraphs are
+# shown in a column rather than side-by-side
+data |>
+  filter(!is.na(grade_factor)) |>
+  ggplot(aes(grade_factor)) +
+  geom_bar() +
+  facet_wrap(~ schooltype, nrow = 3)
+
+# alternatively, we can specify two variable within aes():
+# grade_factor is shown through the "fill" color while
+# schooltype is our main x variable
+data |>
+  filter(!is.na(grade_factor)) |>
+  ggplot(aes(fill = grade_factor, x = schooltype)) +
+  geom_bar(position = "dodge")
+
+# change the label (title) for the "fill" legend to "Grade"
+data |>
+  filter(!is.na(grade_factor)) |>
+  ggplot(aes(fill = grade_factor, x = schooltype)) +
+  geom_bar(position = "dodge") +
+  labs(fill = "Grade")
+
+# we can also display this information in a stacked bar chart
+data |>
+  filter(!is.na(grade_factor)) |>
+  ggplot(aes(fill = grade_factor, x = schooltype)) +
+  geom_bar(position = "fill") +
+  labs(y = "proportion", fill = "Grade")
+```
+:::
+

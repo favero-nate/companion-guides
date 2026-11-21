@@ -1,0 +1,482 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R Companion Guide",
+    "section": "",
+    "text": "Preface\nThis is a guide to learning R. It is meant to be a companion to the 2nd edition of Statistics Minus the Math: https://minusthemath.com/2e/\nEven if you are not using that textbook, you are welcome to use this guide.\nSome similar materials are available for learning Stata at the sister site: https://learndata.net/stata-guide",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#contents",
+    "href": "index.html#contents",
+    "title": "R Companion Guide",
+    "section": "Contents",
+    "text": "Contents\nIn each main section of the chapters, you’ll see a model script, followed by a list of key concepts and syntax that will be helpful to know. To understand the model script, you should try running it yourself (e.g., by copy-pasting it into RStudio).\nIn the final section of each chapter, I provide an exercise where you can try out what you just learned. Often, there is additional description of the dataset used in the Statistics Minus the Math text.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#what-this-guide-will-and-wont-cover",
+    "href": "index.html#what-this-guide-will-and-wont-cover",
+    "title": "R Companion Guide",
+    "section": "What this guide will and won’t cover",
+    "text": "What this guide will and won’t cover\nThe goal here is dip your toes into the waters of programming in R. Thus, I will provide code that I hope is relatively easy to understand. I will not always follow best practices for coding because I believe doing so sometimes makes the code more difficult for a total beginner. You can learn those best practices later, and there are many great resources available to help (such as R4DS).\nAs such, I will not teach you to write “good code” (the kind that follows best practices) in these lessons. Instead, I hope you can write code that is good enough to show you some of the power of R and some of the ways data is being processed (without getting too overwhelmed if you are new to programming). Getting this basic familiarity with R will help prepare you to engage with more advanced resources that can teach you to write better code.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#accessing-r",
+    "href": "index.html#accessing-r",
+    "title": "R Companion Guide",
+    "section": "Accessing R",
+    "text": "Accessing R\nI assume you will be executing R code using RStudio. You have two options for how to get these programs running:\n\nYou can download and install both R and RStudio on your computer. There are several installation guides available online, such as this one: https://moderndive.com/1-getting-started.html\nYou can use RStudio in a web browser through Posit Cloud, which offers free accounts with limited features: https://posit.cloud/",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "01-intro.html",
+    "href": "01-intro.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Model script\nDataset source: https://onlinestatbook.com/2/case_studies/binge.html",
+    "crumbs": [
+      "Ch. 1: Getting Started",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "01-intro.html#model-script",
+    "href": "01-intro.html#model-script",
+    "title": "Introduction",
+    "section": "",
+    "text": "# This is a note to myself, called a \"comment\"\ndata &lt;- read.csv(\"https://learndata.net/binge.csv\")\nView(data)\ndata$sex_text",
+    "crumbs": [
+      "Ch. 1: Getting Started",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "01-intro.html#key-conceptssyntax",
+    "href": "01-intro.html#key-conceptssyntax",
+    "title": "Introduction",
+    "section": "Key concepts/syntax:",
+    "text": "Key concepts/syntax:\n\nread.csv(): load in a dataset stored in “csv” format\ndata &lt;- read.csv(\"https://learndata.net/binge.csv\")\nView(): show the data in a spreadsheet view\nView(data)\nreferring to variables within a dataset: usually when you refer to a variable you also need to indicate the dataset, sometimes you can use $ to connect the name of the dataset to the name of the variable (column)\ndata$sex_text\nclear out workspace: in RStudio, click the broom icon in the “environment”\nTo leave a comment in an R script, use #\n# This is a note to myself, called a \"comment\"\nComment (or uncomment) several lines in a row: in RStudio, select the lines in the R script you want to modify, and then from the drop-down menu select Code &gt; Comment/Uncomment Lines",
+    "crumbs": [
+      "Ch. 1: Getting Started",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "01-simple-graphs.html",
+    "href": "01-simple-graphs.html",
+    "title": "Simple Graphs",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Ch. 1: Getting Started",
+      "Simple Graphs"
+    ]
+  },
+  {
+    "objectID": "01-simple-graphs.html#model-script",
+    "href": "01-simple-graphs.html#model-script",
+    "title": "Simple Graphs",
+    "section": "",
+    "text": "data &lt;- read.csv(\"https://learndata.net/binge.csv\")\n\n# Graphs for qualitative variables (using variable sex_text)\n\nbarplot(table(data$sex_text))\n\npie(table(data$sex_text))\n\n# Graphs for quantitative variables (using variable modrunk)\n\nhist(data$modrunk)\n\nplot(density(data$modrunk))\n\nboxplot(data$modrunk)\nboxplot(data$modrunk, horizontal = TRUE)\n\nstripchart(data$modrunk)\nstripchart(data$modrunk, method = \"jitter\")\n\ninstall.packages(\"vioplot\")\nlibrary(vioplot)\nvioplot(data$modrunk)\nvioplot(data$modrunk, horizontal = TRUE)",
+    "crumbs": [
+      "Ch. 1: Getting Started",
+      "Simple Graphs"
+    ]
+  },
+  {
+    "objectID": "01-simple-graphs.html#key-conceptssyntax",
+    "href": "01-simple-graphs.html#key-conceptssyntax",
+    "title": "Simple Graphs",
+    "section": "Key concepts/syntax:",
+    "text": "Key concepts/syntax:\n\nbarplot(table()): create a simple bar graph\nbarplot(table(data$sex_text))\npie(table()): create a simple pie chart\npie(table(data$sex_text))\nhist(): create a histogram\nhist(data$modrunk)\nplot(density()): create a k-density plot\nplot(density(data$modrunk))\nboxplot(): create a boxplot\nboxplot(data$modrunk, horizontal = TRUE)\nstripchart(): create a strip plot\nstripchart(data$modrunk, method = \"jitter\")\ninstall.packages(): install a package\ninstall.packages(\"vioplot\")\nlibrary(): load in a package (for this session)\nlibrary(vioplot)\nvioplot: create a violin plot, using the vioplot package\nvioplot(data$modrunk, horizontal = TRUE)",
+    "crumbs": [
+      "Ch. 1: Getting Started",
+      "Simple Graphs"
+    ]
+  },
+  {
+    "objectID": "01-var-types.html",
+    "href": "01-var-types.html",
+    "title": "Variable Types",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Ch. 1: Getting Started",
+      "Variable Types"
+    ]
+  },
+  {
+    "objectID": "01-var-types.html#model-script",
+    "href": "01-var-types.html#model-script",
+    "title": "Variable Types",
+    "section": "",
+    "text": "data &lt;- readRDS(url(\"https://learndata.net/binge.Rds\"))\nstr(data)\nlevels(data$sex_factor)",
+    "crumbs": [
+      "Ch. 1: Getting Started",
+      "Variable Types"
+    ]
+  },
+  {
+    "objectID": "01-var-types.html#key-conceptssyntax",
+    "href": "01-var-types.html#key-conceptssyntax",
+    "title": "Variable Types",
+    "section": "Key concepts/syntax:",
+    "text": "Key concepts/syntax:\n\nnumeric variables: often indicated as num for short, there are many different specific numeric types\ncharacter variables: often indicated as chr for short, these are text (non-numeric) variables, also known as string variables\nfactor variables: sometimes indicated as fct for short, these are qualitative variables that take on specific levels (which can be text) from a finite list\nreadRDS(): load an .Rds file\ndata &lt;- readRDS(url(\"https://learndata.net/binge.Rds\"))\nstr(): show the variable type for each variable in a dataset\nstr(data)\nlevels(): show the levels of a factor variable\nlevels(data$sex_factor)",
+    "crumbs": [
+      "Ch. 1: Getting Started",
+      "Variable Types"
+    ]
+  },
+  {
+    "objectID": "01-lab.html",
+    "href": "01-lab.html",
+    "title": "Put it into Practice",
+    "section": "",
+    "text": "Now it’s time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.\nUnless your instructor tells you otherwise, use an R script to execute all code needed to accomplish the following:\n\nLoad in the social media posts dataset (posts.csv or posts.Rds). You can download it here (csv) or here (Rds) and save it on your computer. Or you can load the file directly into R through the web at the following URL: https://learndata.net/posts.csv\n\n\nSelect four variables to examine. Make sure to choose at least one qualitative (or ordinal) variable and one quantitative variable. Note that binary variables (with values of only 0 and 1) are considered qualitative variables.\nFor each of these four variables, make at least two graphs. If you are submitting your work to an instructor, you will probably want to save a copy of each graph in a Word document, which you can then submit to show you completed this assignment.\nTo get your graphs out of R and into a Word doc, you can try using copy-paste. Another option is to take a screenshot and then paste this into your Word doc. One final option (in RStudio) is to click the “Export” button in the Plots window, allowing you to save the graph as its own file in a folder of your choosing; use the “Save as Image” option. In Word, you can then navigate to “insert” a “picture” from your device.\n\nAfter completing all of this, you should save your R script file in a folder that is convenient to access. It is a good idea at the end of your work to try starting a new R session and then running your entire R script at once, to make sure you have a clean script that can fully execute. If you are submitting work to an instructor, they will likely want you to send them both your script file and a Word doc containing your graphs.",
+    "crumbs": [
+      "Ch. 1: Getting Started",
+      "Put it into Practice"
+    ]
+  },
+  {
+    "objectID": "02-descriptive-stats.html",
+    "href": "02-descriptive-stats.html",
+    "title": "Descriptive Statistics",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Ch. 2: Description, File Types",
+      "Descriptive Statistics"
+    ]
+  },
+  {
+    "objectID": "02-descriptive-stats.html#model-script",
+    "href": "02-descriptive-stats.html#model-script",
+    "title": "Descriptive Statistics",
+    "section": "",
+    "text": "data &lt;- read.csv(\"https://learndata.net/binge.csv\")\n\n# Descriptive statistics for quantitative variables\n\nsummary(data)\nsummary(data$modrunk)\nsummary(data$u_fam)\n\n#install.packages(\"psych\")  # uncomment if psych package not installed\nlibrary(psych)\ndescribe(data)\n\n# Frequency tables (especially useful for qualitative variables)\n\ntable(data$modrunk)\nprop.table(table(data$modrunk))\n\ntable(data$sex_text)\nprop.table(table(data$sex_text))",
+    "crumbs": [
+      "Ch. 2: Description, File Types",
+      "Descriptive Statistics"
+    ]
+  },
+  {
+    "objectID": "02-descriptive-stats.html#key-conceptssyntax",
+    "href": "02-descriptive-stats.html#key-conceptssyntax",
+    "title": "Descriptive Statistics",
+    "section": "Key concepts/syntax:",
+    "text": "Key concepts/syntax:\n\nsummary(): show some descriptive statistics (for quantitative variables), can be used in other ways too\nsummary(data)\ndescribe(): more detailed descriptive statistics for quantitative variables, using the psych package\ndescribe(data)\ntable(): can be used to create a frequency table\ntable(data$modrunk)\nprop.table(): can be used to convert frequencies in a table to proportions\nprop.table(table(data$modrunk))",
+    "crumbs": [
+      "Ch. 2: Description, File Types",
+      "Descriptive Statistics"
+    ]
+  },
+  {
+    "objectID": "02-file-types.html",
+    "href": "02-file-types.html",
+    "title": "File Types",
+    "section": "",
+    "text": "Key concepts:",
+    "crumbs": [
+      "Ch. 2: Description, File Types",
+      "File Types"
+    ]
+  },
+  {
+    "objectID": "02-file-types.html#key-concepts",
+    "href": "02-file-types.html#key-concepts",
+    "title": "File Types",
+    "section": "",
+    "text": "zip file: a compressed file that can contain several files/folders within it\nExcel file: not a plain text file, created for use with Microsoft Excel and uses file ending “.xls” or “.xlsx”\nfixed width file: a plain text file format that uses a fixed number of characters for each column (requires access to a dictionary to indicate each column’s width), used to be popular but now less widely used\ntab delimited file: a plain text file format that uses tabs to indicate the next column\nR file: not a plain text file, created for use with the statistical program R and uses file ending “.Rdata”, “.Rda”, or “.Rds”\nStata data file: not a plain text file, created for use with the statistical program Stata and uses file ending “.dta”\ncomma delimited file: a plain text file format that uses commas to indicate the next column, can use file ending “.csv”",
+    "crumbs": [
+      "Ch. 2: Description, File Types",
+      "File Types"
+    ]
+  },
+  {
+    "objectID": "02-importing-files.html",
+    "href": "02-importing-files.html",
+    "title": "Importing Files",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Ch. 2: Description, File Types",
+      "Importing Files"
+    ]
+  },
+  {
+    "objectID": "02-importing-files.html#model-script",
+    "href": "02-importing-files.html#model-script",
+    "title": "Importing Files",
+    "section": "",
+    "text": "# Note: you'll first need to download binge.zip,\n# available at https://learndata.net/binge.zip\n# Then, edit the following line to match the folder\n# where this file is located.\nsetwd(\"C:/Users/favero/Downloads\")\n\nunzip(\"binge.zip\")\n\ndata_from_tab &lt;- read.delim(\"binge.tab\")\n?read.delim\n\n#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\nlibrary(readxl)\ndata_from_xls &lt;- read_excel(\"binge.xls\")\n\nlibrary(haven) #this is also installed with tidyverse\ndata_from_dta &lt;- read_dta(\"binge.dta\")",
+    "crumbs": [
+      "Ch. 2: Description, File Types",
+      "Importing Files"
+    ]
+  },
+  {
+    "objectID": "02-importing-files.html#key-conceptssyntax",
+    "href": "02-importing-files.html#key-conceptssyntax",
+    "title": "Importing Files",
+    "section": "Key concepts/syntax:",
+    "text": "Key concepts/syntax:\n\nsetwd(): set the “working directory,” which is the default folder on your computer in which Stata will look for files and output files\nsetwd(\"C:/Users/favero/learn data/example files\")\nunzip(): unzip (extract) a zip file\nunzip(\"binge.zip\")\nread.delim(): read in a delimited file (tab delimited by default)\ndata_from_tab &lt;- read.delim(\"binge.tab\")\n?: open a help file for a function or package\n?read.delim\nread_excel(): read in an Excel (xls or xlsx) file, using the readr package1\ndata_dta &lt;- read_dta(\"binge.dta\")\nread_dta(): read in a Stata (dta) file, using the haven package\ndata_dta &lt;- read_dta(\"binge.dta\")",
+    "crumbs": [
+      "Ch. 2: Description, File Types",
+      "Importing Files"
+    ]
+  },
+  {
+    "objectID": "02-importing-files.html#footnotes",
+    "href": "02-importing-files.html#footnotes",
+    "title": "Importing Files",
+    "section": "",
+    "text": "Note this reads the data in using tidyverse format (a “tibble”). If you like that format or use other resources that rely on the tidyverse, you can import other files using tidyverse commands. For example, you can read csv files with read_csv() and tab-delimited files with read_tsv(). Both functions are from the readr package, which you can accessing by installing tidyverse and running library(tidyverse).↩︎",
+    "crumbs": [
+      "Ch. 2: Description, File Types",
+      "Importing Files"
+    ]
+  },
+  {
+    "objectID": "02-lab.html",
+    "href": "02-lab.html",
+    "title": "Put it into Practice",
+    "section": "",
+    "text": "Now it’s time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.\nUnless your instructor tells you otherwise, use an R script to execute all code needed to accomplish the following (note: step 1 can be completed outside of R):\n\nDownload the ed_nonprofits.zip file, which can be found here and save it on your computer. Extract the files (unzip it) in a convenient folder on your computer.\nSet your working director to the folder where the unzipped files are located. Import each file of the three files from the zip file into R, one at a time. Create a file where you can record notes (e.g., a Word file). For each file, write down the name of each file (including the file ending), and then indicate which variable appears first (as the first column) in each file.\nGenerate summary statistics for quantitative variables for the following variables: staff_boardmmbr_2024, finance_rev_indvdon_pct, staff_fulltime_2023, pplsrv_numserved. You can use any of the three files, since all have equivalent data.\nGenerate frequency tables for the following variables: sizestrat, peer_group.\n\nAfter completing all of this, you should save your R script in a folder that is convenient to access. If you are submitting work to an instructor, they will likely want you to send them both your R script and a Word doc containing your results for items 2, 3, and 4 above.",
+    "crumbs": [
+      "Ch. 2: Description, File Types",
+      "Put it into Practice"
+    ]
+  },
+  {
+    "objectID": "03-transformations.html",
+    "href": "03-transformations.html",
+    "title": "Transforming Variables",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Transforming Variables"
+    ]
+  },
+  {
+    "objectID": "03-transformations.html#model-script",
+    "href": "03-transformations.html#model-script",
+    "title": "Transforming Variables",
+    "section": "",
+    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\nlibrary(haven)\nlibrary(tidyverse)\n\ndata &lt;- read_dta(\"https://learndata.net/nycschools.dta\")\n\n# convert quantitative variables currently\n# stored as characters to numbers\ndata &lt;- data |&gt; mutate(iep = parse_number(iep))\ndata &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\ndata &lt;- data |&gt; mutate(ell = parse_number(ell))\ndata &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n\n# rename thgrmathela to something more descriptive\ndata &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# log transform the ell variable\ndata &lt;- data |&gt; mutate(log_ell = log(ell))\n\n# relocate new variable to be next to the original\ndata &lt;- data |&gt; relocate(log_ell, .after = ell)\n\n# standard ell manually based on summary statistics\nlibrary(psych)\ndescribe(data$ell)\ndata &lt;- data |&gt; mutate(z_ell = (ell - 13.79) / 12.33)\n\n# drop the standardized variable and then recreate\n# it with simpler automated syntax, using scale()\ndata &lt;- data |&gt; select(!z_ell)\ndata &lt;- data |&gt; mutate(z_ell = scale(ell))\ndata &lt;- data |&gt; relocate(z_ell, .after = ell)",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Transforming Variables"
+    ]
+  },
+  {
+    "objectID": "03-transformations.html#key-conceptssyntax",
+    "href": "03-transformations.html#key-conceptssyntax",
+    "title": "Transforming Variables",
+    "section": "Key concepts/syntax:",
+    "text": "Key concepts/syntax:\n\n|&gt;: this is called a “pipe” (sometimes also written as %&gt;%), here we use it to connect our dataset (data) to a data manipulation function (e.g., mutate(), rename())1\ndata &lt;- data |&gt; mutate(iep = parse_number(iep))\nmutate(): create a new variable (or overwrite an existing one), using the dplyr package which can be loaded in with library(tidyverse)2\ndata &lt;- data |&gt; mutate(z_ell = (ell - 13.79) / 12.33)\nparse_number(): convert a character variable to a numeric one by ignoring all non-numeric characters3\ndata &lt;- data |&gt; mutate(iep = parse_number(iep))\nrename(): rename a variable, using the dplyr package\ndata &lt;- data |&gt; rename(combined_score = thgrmathela)\nlog(): a function to create a log transformation (based on the natural log)\ndata &lt;- data |&gt; mutate(log_ell = log(ell))\nrelocate(): rearrange the ordering of variables, using the dplyr package\ndata &lt;- data |&gt; relocate(log_ell, .after = ell)\nselect(): select only a subset of variables (e.g., all but z_ell), using the dplyr package\ndata &lt;- data |&gt; select(!z_ell)\n!: means “not” (e.g., as is “not this variable”)\ndata &lt;- data |&gt; select(!z_ell)\nscale(): standardize a set of values (e.g., from a variable)\ndata &lt;- data |&gt; mutate(z_ell = scale(ell))",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Transforming Variables"
+    ]
+  },
+  {
+    "objectID": "03-transformations.html#footnotes",
+    "href": "03-transformations.html#footnotes",
+    "title": "Transforming Variables",
+    "section": "",
+    "text": "For a more complete explanation, see https://r4ds.hadley.nz/data-transform.html#sec-the-pipe↩︎\nFor more explanation of this and most other functions used in this section, see https://r4ds.hadley.nz/data-transform.html#columns↩︎\nFor more explanation, see https://r4ds.hadley.nz/numbers.html#making-numbers↩︎",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Transforming Variables"
+    ]
+  },
+  {
+    "objectID": "03-associations.html",
+    "href": "03-associations.html",
+    "title": "Associations (for Quantitative Variables)",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Associations (for Quantitative Variables)"
+    ]
+  },
+  {
+    "objectID": "03-associations.html#model-script",
+    "href": "03-associations.html#model-script",
+    "title": "Associations (for Quantitative Variables)",
+    "section": "",
+    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\nlibrary(haven)\nlibrary(tidyverse)\n\n# load in and prepare the data\nnycschools &lt;- read_dta(\"https://learndata.net/nycschools.dta\")\nnycschools &lt;- nycschools |&gt; mutate(thgrmathela = parse_number(thgrmathela))\nnycschools &lt;- nycschools |&gt; rename(combined_score = thgrmathela)\n\n# calculate a correlation coefficient\ncor(nycschools$overallscore, nycschools$combined_score, use = \"complete\")\n\n# note that without the proper \"use\" option, we get\n# \"NA\" as our result due to missing observations\ncor(nycschools$overallscore, nycschools$combined_score)\n\n# three different ways to make the same plot\nplot(nycschools$combined_score, nycschools$overallscore)\nplot(nycschools$overallscore ~ nycschools$combined_score)\nplot(overallscore ~ combined_score, data = nycschools)\n\n# add a regression line to the current plot\nabline(lm(overallscore ~ combined_score, data = nycschools))",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Associations (for Quantitative Variables)"
+    ]
+  },
+  {
+    "objectID": "03-associations.html#key-conceptssyntax",
+    "href": "03-associations.html#key-conceptssyntax",
+    "title": "Associations (for Quantitative Variables)",
+    "section": "Key concepts/syntax:",
+    "text": "Key concepts/syntax:\n\ncor(): calculate correlations among variables\ncor(nycschools$overallscore, nycschools$combined_score, use = \"complete\")\nplot(): create a simple 2D plot, such as a scatter plot\nplot(nycschools$combined_score, nycschools$overallscore)\nabline(lm()): add a regression line to the current plot\nabline(lm(overallscore ~ combined_score, data = nycschools))",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Associations (for Quantitative Variables)"
+    ]
+  },
+  {
+    "objectID": "03-regression.html",
+    "href": "03-regression.html",
+    "title": "Regression",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Regression"
+    ]
+  },
+  {
+    "objectID": "03-regression.html#model-script",
+    "href": "03-regression.html#model-script",
+    "title": "Regression",
+    "section": "",
+    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\nlibrary(haven)\nlibrary(tidyverse)\n\n# load in and prepare the data\ndata &lt;- read_dta(\"https://learndata.net/nycschools.dta\")\ndata &lt;- data |&gt; mutate(iep = parse_number(iep))\ndata &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\ndata &lt;- data |&gt; mutate(ell = parse_number(ell))\ndata &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\ndata &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# run a regression, then show a summary of its results\nregression1 &lt;- lm(overallscore ~ combined_score, data = data)\nsummary(regression1)\n\n# you can also combine the above into a single line\nsummary(lm(overallscore ~ combined_score, data = data))\n\n# another regression\nregression2 &lt;- lm(overallscore ~ combined_score + ell + iep + blackhispanic + economicneedindex, data = data)\nsummary(regression2)",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Regression"
+    ]
+  },
+  {
+    "objectID": "03-regression.html#key-conceptssyntax",
+    "href": "03-regression.html#key-conceptssyntax",
+    "title": "Regression",
+    "section": "Key concepts/syntax:",
+    "text": "Key concepts/syntax:\n\nlm(): run a linear (OLS) regression\nregression1 &lt;- lm(overallscore ~ combined_score, data = data)\nsummary(): show a summary, such as a summary of regression results\nsummary(regression1)",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Regression"
+    ]
+  },
+  {
+    "objectID": "03-lab.html",
+    "href": "03-lab.html",
+    "title": "Put it into Practice",
+    "section": "",
+    "text": "Now it’s time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.\nUnless your instructor tells you otherwise, use an R script to execute all code needed to accomplish the following (note: step 1 can be completed outside of R):\nAfter completing all of this, you should save your R script in a folder that is convenient to access. If you are submitting work to an instructor, they will likely want you to send them both your R script and a Word doc containing your results for items 4-6.",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Put it into Practice"
+    ]
+  },
+  {
+    "objectID": "03-lab.html#footnotes",
+    "href": "03-lab.html#footnotes",
+    "title": "Put it into Practice",
+    "section": "",
+    "text": "This is a modified version of data obtained from The World Bank: https://datacatalog.worldbank.org/search/dataset/0037712/world-development-indicators (CC-BY 4.0)↩︎",
+    "crumbs": [
+      "Ch. 3: Transformations, Associations",
+      "Put it into Practice"
+    ]
+  },
+  {
+    "objectID": "04-quant-qual-comparisons.html",
+    "href": "04-quant-qual-comparisons.html",
+    "title": "Qualitative-Quantitative Relationships",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Ch. 4: Qualitative Variables",
+      "Qualitative-Quantitative Relationships"
+    ]
+  },
+  {
+    "objectID": "04-quant-qual-comparisons.html#model-script",
+    "href": "04-quant-qual-comparisons.html#model-script",
+    "title": "Qualitative-Quantitative Relationships",
+    "section": "",
+    "text": "setwd(\"C:/Users/favero/Downloads\")\n\n#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"psych\")  # uncomment if fastDummies not installed\n#install.packages(\"fastDummies\")  # uncomment if fastDummies not installed\nlibrary(haven)\nlibrary(tidyverse)\nlibrary(psych)\nlibrary(fastDummies)\n\ndata &lt;- read_dta(\"https://learndata.net/nycschools.dta\")\n\n# basic data processing needed to use this dataset, copied from Ch. 3:\n  # convert quantitative variables currently\n  # stored as characters to numbers\n  data &lt;- data |&gt; mutate(iep = parse_number(iep))\n  data &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\n  data &lt;- data |&gt; mutate(ell = parse_number(ell))\n  data &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n  \n  # rename thgrmathela to something more descriptive\n  data &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# create a table with summary statistics for combined_score by schooltype  \ndescribeBy(data$combined_score, group=data$schooltype)\n\n# an alternative way to create a similar table using tidyverse commands\ndata |&gt;\n  group_by(schooltype) |&gt; \n  summarize(\n    n = sum(!is.na(combined_score)),\n    mean = mean(combined_score, na.rm = TRUE),\n    median = median(combined_score, na.rm = TRUE),\n    sd = sd(combined_score, na.rm = TRUE)\n  )\n\n# create a set of box plots showing this same relationship\nboxplot(combined_score ~ schooltype, data = data)\n\n# let's use a different qualitative variable (overallgrade)\nboxplot(combined_score ~ overallgrade, data = data)\n\n# create a factor variable from a string variable\ndata &lt;- data |&gt;\n  mutate(grade_factor = factor(overallgrade, exclude = \"\"))\n\n# now recreate the prior boxplot using the factor variable,\n# and since blanks got recoded as NAs (missing), they'll\n# be excluded from the plot\nboxplot(combined_score ~ grade_factor, data = data)\n\n# create a table to check mapping of new variable to old one\ntable(data$overallgrade, data$grade_factor, useNA = \"ifany\")\n\n# create a binary indicator for one of the values of a string variable\ndata &lt;- data |&gt;\n  mutate(grade_A = case_when(\n    overallgrade==\"A\" ~ 1,\n    overallgrade==\"\" ~ NA,\n    .default  = 0\n    )\n  )\n\n# create a table to check mapping of new variable to old one\ntable(data$overallgrade, data$grade_A, useNA = \"ifany\")\n\n# using the fastDummies package, we can quickly convert a factor\n# variable to a set of binary variables (with NAs handled correctly)\ndata &lt;- data |&gt;\n  dummy_cols(\"grade_factor\")\n\n# save the dataframe as a file in my working directory\nsaveRDS(data, file=\"nycschools_modified.rds\")",
+    "crumbs": [
+      "Ch. 4: Qualitative Variables",
+      "Qualitative-Quantitative Relationships"
+    ]
+  },
+  {
+    "objectID": "04-qual-qual-comparisons.html",
+    "href": "04-qual-qual-comparisons.html",
+    "title": "Qualitative-Qualitative Relationships",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Ch. 4: Qualitative Variables",
+      "Qualitative-Qualitative Relationships"
+    ]
+  },
+  {
+    "objectID": "04-qual-qual-comparisons.html#model-script",
+    "href": "04-qual-qual-comparisons.html#model-script",
+    "title": "Qualitative-Qualitative Relationships",
+    "section": "",
+    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"gmodels\")  # uncomment if fastDummies not installed\nlibrary(haven)\nlibrary(tidyverse)\nlibrary(gmodels)\n\ndata &lt;- read_dta(\"https://learndata.net/nycschools.dta\")\n\n# basic data processing needed to use this dataset, copied from Ch. 3:\n  # convert quantitative variables currently\n  # stored as characters to numbers\n  data &lt;- data |&gt; mutate(iep = parse_number(iep))\n  data &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\n  data &lt;- data |&gt; mutate(ell = parse_number(ell))\n  data &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n  \n  # rename thgrmathela to something more descriptive\n  data &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# we can use the CrossTable function from gmodels to make crosstabs\n# first, we create a table using default settings:\nCrossTable(data$schooltype, data$overallgrade)\n\n# the table above is very wide and may be difficult to read\n# let's switch the order in which we list our two variable so that\n# the variable with more values (overallgrade) will be shown as\n# rows rather than columns\nCrossTable(data$overallgrade, data$schooltype)\n\n# by default, many proportions are shown below each frequency\n# let's turn off all proportions except prop.r (row proportions)\nCrossTable(data$overallgrade, data$schooltype, prop.c = FALSE, prop.t = FALSE, prop.chisq = FALSE)\n\n# an alternative if we prefer seeing column proportions:\nCrossTable(data$overallgrade, data$schooltype, prop.r = FALSE, prop.t = FALSE, prop.chisq = FALSE)\n\n# as in part 1, we will convert overallgrade to a factor\n# variable\ndata &lt;- data |&gt;\n  mutate(grade_factor = factor(overallgrade, exclude = \"\"))\n\n# make a simple bar chart with the ggplot2 package (part of core tidyverse)\ndata |&gt;\n  ggplot(aes(grade_factor)) +\n  geom_bar()\n\n# filter out the observations where grade_factor is missing (NA)\ndata |&gt;\n  filter(!is.na(grade_factor)) |&gt;\n  ggplot(aes(grade_factor)) +\n  geom_bar()\n\n# create a grouped bar graph, grouping by schooltype\ndata |&gt;\n  filter(!is.na(grade_factor)) |&gt;\n  ggplot(aes(grade_factor)) +\n  geom_bar() +\n  facet_wrap(~ schooltype)\n\n# sometimes it is helpful to adjust the nrow option within\n# facet_wrap()\n# for example, we can use three rows so our subgraphs are\n# shown in a column rather than side-by-side\ndata |&gt;\n  filter(!is.na(grade_factor)) |&gt;\n  ggplot(aes(grade_factor)) +\n  geom_bar() +\n  facet_wrap(~ schooltype, nrow = 3)\n\n# alternatively, we can specify two variable within aes():\n# grade_factor is shown through the \"fill\" color while\n# schooltype is our main x variable\ndata |&gt;\n  filter(!is.na(grade_factor)) |&gt;\n  ggplot(aes(fill = grade_factor, x = schooltype)) +\n  geom_bar(position = \"dodge\")\n\n# change the label (title) for the \"fill\" legend to \"Grade\"\ndata |&gt;\n  filter(!is.na(grade_factor)) |&gt;\n  ggplot(aes(fill = grade_factor, x = schooltype)) +\n  geom_bar(position = \"dodge\") +\n  labs(fill = \"Grade\")\n\n# we can also display this information in a stacked bar chart\ndata |&gt;\n  filter(!is.na(grade_factor)) |&gt;\n  ggplot(aes(fill = grade_factor, x = schooltype)) +\n  geom_bar(position = \"fill\") +\n  labs(y = \"proportion\", fill = \"Grade\")",
+    "crumbs": [
+      "Ch. 4: Qualitative Variables",
+      "Qualitative-Qualitative Relationships"
+    ]
+  },
+  {
+    "objectID": "04-regression.html",
+    "href": "04-regression.html",
+    "title": "Regression with Qualitative Variables",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Ch. 4: Qualitative Variables",
+      "Regression with Qualitative Variables"
+    ]
+  },
+  {
+    "objectID": "04-regression.html#model-script",
+    "href": "04-regression.html#model-script",
+    "title": "Regression with Qualitative Variables",
+    "section": "",
+    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"fastDummies\")  # uncomment if fastDummies not installed\nlibrary(haven)\nlibrary(tidyverse)\nlibrary(fastDummies)\n\ndata &lt;- read_dta(\"https://learndata.net/nycschools.dta\")\n\n# basic data processing needed to use this dataset, copied from Ch. 3:\n  # convert quantitative variables currently\n  # stored as characters to numbers\n  data &lt;- data |&gt; mutate(iep = parse_number(iep))\n  data &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\n  data &lt;- data |&gt; mutate(ell = parse_number(ell))\n  data &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n  \n  # rename thgrmathela to something more descriptive\n  data &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# for string variables, they can be directly included\n# in a regression as a qualitative independent variable\nsummary(lm(combined_score ~ schooltype, data = data))\n\n# another way to get this result is to create dummy \n# (binary) variables and enter them individually into\n# a regression (note: the variable schooltype_K-8 has\n# a hyphen in it, which requires referring to it as \n# `schooltype_K-8`)\ndata &lt;- data |&gt;\n  dummy_cols(\"schooltype\")\nsummary(lm(combined_score ~ `schooltype_K-8` + schooltype_Middle, data = data))\n\n\n# if a qualitative variable is stored numerically, it\n# will be (incorrectly) treated as a quantitative variable\n# by default:\nsummary(lm(combined_score ~ district, data = data))\n\n# we can enclose the variable name with factor() so\n# R will know to treat the variable as qualitative\nsummary(lm(combined_score ~ factor(district), data = data))\n\n# as in part 1, we will convert overallgrade to a factor\n# and then to a series of dummies\ndata &lt;- data |&gt;\n  mutate(grade_factor = factor(overallgrade, exclude = \"\"))\ndata &lt;- data |&gt;\n  dummy_cols(\"grade_factor\")\n\n# we can perform ordinary (linear) regression with a dummy\n# dependent variable, which is perhaps the simplest way to\n# analyze a qualitative dependent variable using regression\nsummary(lm(grade_factor_A ~ schooltype + combined_score, data = data))\n\n# the regression above showed us predictions for a school\n# receiving an overall grade of A; if we want predictions\n# for each possible grade, we can run a series of regressions\nsummary(lm(grade_factor_B ~ schooltype + combined_score, data = data))\nsummary(lm(grade_factor_C ~ schooltype + combined_score, data = data))\nsummary(lm(grade_factor_D ~ schooltype + combined_score, data = data))\nsummary(lm(grade_factor_F ~ schooltype + combined_score, data = data))",
+    "crumbs": [
+      "Ch. 4: Qualitative Variables",
+      "Regression with Qualitative Variables"
+    ]
+  },
+  {
+    "objectID": "04-lab.html",
+    "href": "04-lab.html",
+    "title": "Put it into Practice",
+    "section": "",
+    "text": "Now it’s time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.\nUnless your instructor tells you otherwise, use an R script to execute all code needed to accomplish the following:\nAfter completing all of this, you should save your R script in a folder that is convenient to access. If you are submitting work to an instructor, they will likely want you to send them both your R script and a Word doc containing your results for items 2-8.",
+    "crumbs": [
+      "Ch. 4: Qualitative Variables",
+      "Put it into Practice"
+    ]
+  },
+  {
+    "objectID": "04-lab.html#footnotes",
+    "href": "04-lab.html#footnotes",
+    "title": "Put it into Practice",
+    "section": "",
+    "text": "This is a modified version of data obtained from Sønderskov and colleagues: https://doi.org/10.17605/OSF.IO/62BV5 (CC-BY 4.0)↩︎",
+    "crumbs": [
+      "Ch. 4: Qualitative Variables",
+      "Put it into Practice"
+    ]
+  }
+]

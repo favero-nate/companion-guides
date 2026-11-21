@@ -1,0 +1,31 @@
+# Put it into Practice {.unnumbered}
+
+Now it's time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.
+
+::: {.content-visible when-profile="stata"}
+Unless your instructor tells you otherwise, use a do-file to execute all commands needed to accomplish the following:
+
+1.  Load in the social media posts dataset (`posts.dta`). You can download it [here](https://learndata.net/posts.dta) and save it on your computer. Or you can load the file directly into Stata through the web at the following URL: <https://learndata.net/posts.dta>
+:::
+
+::: {.content-visible when-profile="r"}
+Unless your instructor tells you otherwise, use an R script to execute all code needed to accomplish the following:
+
+1.  Load in the social media posts dataset (`posts.csv` or `posts.Rds`). You can download it [here (csv)](https://learndata.net/posts.csv) or [here (Rds)](https://learndata.net/posts.Rds) and save it on your computer. Or you can load the file directly into R through the web at the following URL: <https://learndata.net/posts.csv>
+:::
+
+2.  Select four variables to examine. Make sure to choose at least one qualitative (or ordinal) variable and one quantitative variable. Note that binary variables (with values of only 0 and 1) are considered qualitative variables.
+
+3.  For each of these four variables, make at least two graphs. If you are submitting your work to an instructor, you will probably want to save a copy of each graph in a Word document, which you can then submit to show you completed this assignment.
+
+    [To get your graphs out of Stata and into a Word doc, you can try using copy-paste, although this may not work if you have a remote access setup for using Stata. Another option is to take a screenshot and then paste this into your Word doc. One final option is to click the "save" icon in the window showing the graph, allowing you to save the graph as its own file in a folder of your choosing; before clicking the "Save" button, you will need to change the setting under "Save as type" to something like a PNG or JPEG that can easily be read into Word. In Word, you can then navigate to "insert" a "picture" from your device.]{.content-visible when-profile="stata"}
+
+    [To get your graphs out of R and into a Word doc, you can try using copy-paste. Another option is to take a screenshot and then paste this into your Word doc. One final option (in RStudio) is to click the "Export" button in the Plots window, allowing you to save the graph as its own file in a folder of your choosing; use the "Save as Image" option. In Word, you can then navigate to "insert" a "picture" from your device.]{.content-visible when-profile="r"}
+
+::: {.content-visible when-profile="stata"}
+After completing all of this, you should save your do-file in a folder that is convenient to access. It is a good idea at the end of your work to try clearing out your Stata session (e.g., typing "clear" in the command box and then hitting Enter) and then running your entire do-file at once, to make sure you have a clean do-file that can fully execute. If you are submitting work to an instructor, they will likely want you to send them both your do-file and a Word doc containing your graphs.
+:::
+
+::: {.content-visible when-profile="r"}
+After completing all of this, you should save your R script file in a folder that is convenient to access. It is a good idea at the end of your work to try starting a new R session and then running your entire R script at once, to make sure you have a clean script that can fully execute. If you are submitting work to an instructor, they will likely want you to send them both your script file and a Word doc containing your graphs.
+:::

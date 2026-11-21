@@ -1,0 +1,58 @@
+# Regression {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+{{< video https://youtu.be/XCInm4ibg08 >}}
+
+## Key concepts/commands:
+
+1.  `reg`: run a linear (OLS) regression
+
+    ```         
+    reg overallscore combined_score ell iep blackhispanic economicneedindex
+    ```
+
+2.  monospace fonts: often used to display text in programming contexts, also useful for displaying raw text output from many statistical software packages
+:::
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+#install.packages("tidyverse")  # uncomment if tidyverse not installed
+library(haven)
+library(tidyverse)
+
+# load in and prepare the data
+data <- read_dta("https://learndata.net/nycschools.dta")
+data <- data |> mutate(iep = parse_number(iep))
+data <- data |> mutate(blackhispanic = parse_number(blackhispanic))
+data <- data |> mutate(ell = parse_number(ell))
+data <- data |> mutate(thgrmathela = parse_number(thgrmathela))
+data <- data |> rename(combined_score = thgrmathela)
+
+# run a regression, then show a summary of its results
+regression1 <- lm(overallscore ~ combined_score, data = data)
+summary(regression1)
+
+# you can also combine the above into a single line
+summary(lm(overallscore ~ combined_score, data = data))
+
+# another regression
+regression2 <- lm(overallscore ~ combined_score + ell + iep + blackhispanic + economicneedindex, data = data)
+summary(regression2)
+```
+
+## Key concepts/syntax:
+
+1.  `lm()`: run a linear (OLS) regression
+
+    ``` r
+    regression1 <- lm(overallscore ~ combined_score, data = data)
+    ```
+
+2.  `summary()`: show a summary, such as a summary of regression results
+
+    ``` r
+    summary(regression1)
+    ```
+:::

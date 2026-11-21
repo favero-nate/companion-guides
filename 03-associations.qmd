@@ -1,0 +1,75 @@
+# Associations (for Quantitative Variables) {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+{{< video https://youtu.be/XJx0jTXEw3U >}}
+
+## Key concepts/commands:
+
+1.  `corr`: calculate correlations among variables
+
+    ```         
+    corr overallscore combined_score
+    ```
+
+2.  `twoway scatter`: create a scatter plot
+
+    ```         
+    twoway scatter overallscore combined_score
+    ```
+
+3.  `twoway lfit`: create a linear (regression) trendline
+
+    ```         
+    twoway (scatter overallscore combined_score) (lfit overallscore combined_score)
+    ```
+:::
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+#install.packages("tidyverse")  # uncomment if tidyverse not installed
+library(haven)
+library(tidyverse)
+
+# load in and prepare the data
+nycschools <- read_dta("https://learndata.net/nycschools.dta")
+nycschools <- nycschools |> mutate(thgrmathela = parse_number(thgrmathela))
+nycschools <- nycschools |> rename(combined_score = thgrmathela)
+
+# calculate a correlation coefficient
+cor(nycschools$overallscore, nycschools$combined_score, use = "complete")
+
+# note that without the proper "use" option, we get
+# "NA" as our result due to missing observations
+cor(nycschools$overallscore, nycschools$combined_score)
+
+# three different ways to make the same plot
+plot(nycschools$combined_score, nycschools$overallscore)
+plot(nycschools$overallscore ~ nycschools$combined_score)
+plot(overallscore ~ combined_score, data = nycschools)
+
+# add a regression line to the current plot
+abline(lm(overallscore ~ combined_score, data = nycschools))
+```
+
+## Key concepts/syntax:
+
+1.  `cor()`: calculate correlations among variables
+
+    ``` r
+    cor(nycschools$overallscore, nycschools$combined_score, use = "complete")
+    ```
+
+2.  `plot()`: create a simple 2D plot, such as a scatter plot
+
+    ``` r
+    plot(nycschools$combined_score, nycschools$overallscore)
+    ```
+
+3.  `abline(lm())`: add a regression line to the current plot
+
+    ``` r
+    abline(lm(overallscore ~ combined_score, data = nycschools))
+    ```
+:::

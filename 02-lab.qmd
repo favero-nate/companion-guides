@@ -1,0 +1,19 @@
+# Put it into Practice {.unnumbered}
+
+Now it's time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.
+
+::: {.content-visible unless-profile="excel"}
+Unless your instructor tells you otherwise, use an [do-file]{.content-visible when-profile="stata"}[R script]{.content-visible when-profile="r"} to execute all code needed to accomplish the following (note: step 1 can be completed outside of [Stata]{.content-visible when-profile="stata"}[R]{.content-visible when-profile="r"}):
+:::
+
+1.  Download the `ed_nonprofits.zip` file, which can be found [here](https://learndata.net/ed_nonprofits.zip) and save it on your computer. Extract the files (unzip it) in a convenient folder on your computer.
+
+2.  [Set your working director to the folder where the unzipped files are located.]{.content-visible unless-profile="excel"} Import each file of the three files from the zip file into [Stata]{.content-visible when-profile="stata"}[R]{.content-visible when-profile="r"}, one at a time. Create a file where you can record notes (e.g., a Word file). For each file, write down the name of each file (including the file ending), and then indicate which variable appears first (as the first column) in each file.
+
+3.  Generate summary statistics for quantitative variables for the following variables: `staff_boardmmbr_2024`, `finance_rev_indvdon_pct`, `staff_fulltime_2023`, `pplsrv_numserved`. You can use any of the three files, since all have equivalent data.
+
+4.  Generate frequency tables for the following variables: `sizestrata`, `peer_group`.
+
+::: {.content-visible unless-profile="excel"}
+After completing all of this, you should save your [do-file]{.content-visible when-profile="stata"}[R script]{.content-visible when-profile="r"} in a folder that is convenient to access. If you are submitting work to an instructor, they will likely want you to send them both your [do-file]{.content-visible when-profile="stata"}[R script]{.content-visible when-profile="r"} and a Word doc containing your results for items 2, 3, and 4 above.
+:::

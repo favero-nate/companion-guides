@@ -1,0 +1,53 @@
+# Variable Types {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+{{< video https://youtu.be/WWTpSJZkZcw >}}
+
+## Key concepts/commands:
+
+1.  numeric variables: many different specific numeric types, but they are shown in black or blue in the Data Editor
+
+2.  string variables: these are text (non-numeric) variables, and they are shown in red in the Data Editor
+
+3.  `codebook`: show variable information, including the numeric values underlying any "value labels" (for variables showing up in blue)
+
+    ```         
+    codebook u_fam
+    ```
+:::
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+data <- readRDS(url("https://learndata.net/binge.Rds"))
+str(data)
+levels(data$sex_factor)
+```
+
+## Key concepts/syntax:
+
+1.  numeric variables: often indicated as `num` for short, there are many different specific numeric types
+
+2.  character variables: often indicated as `chr` for short, these are text (non-numeric) variables, also known as *string* variables
+
+3.  factor variables: sometimes indicated as `fct` for short, these are qualitative variables that take on specific levels (which can be text) from a finite list
+
+4.  `readRDS()`: load an `.Rds` file
+
+    ``` r
+    data <- readRDS(url("https://learndata.net/binge.Rds"))
+    ```
+
+5.  `str()`: show the variable type for each variable in a dataset
+
+    ``` r
+    str(data)
+    ```
+
+6.  `levels()`: show the levels of a factor variable
+
+    ``` r
+    levels(data$sex_factor)
+    ```
+:::

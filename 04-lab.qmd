@@ -1,0 +1,29 @@
+# Put it into Practice {.unnumbered}
+
+Now it's time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.
+
+::: {.content-visible unless-profile="excel"}
+Unless your instructor tells you otherwise, use an [do-file]{.content-visible when-profile="stata"}[R script]{.content-visible when-profile="r"} to execute all code needed to accomplish the following:
+:::
+
+1.  Load in the Vulnerable Neighborhoods Survey dataset (`vns.dta`).[^04-lab-1] You can download it [here](https://learndata.net/vns.dta) and save it on your computer. [Or you can load the file directly into Stata through the Internet with the following URL: <https://learndata.net/vns.dta>]{.content-visible when-profile="stata"} [Or you can load the file directly into R through the Internet with the following URL: <https://learndata.net/vns.dta>]{.content-visible when-profile="r"}
+
+2.  Find the means and medians of `avg_disgust` by `gender` (i.e., for females and for males).
+
+3.  Create a boxplot to compare `avg_disgust` across genders.
+
+4.  Create a two-way frequency table with percentages by column (or row) for the variables `perceived_discrim` and `gender`. Then, create one for `perceived_discrim` and `immstatus`.
+
+5.  Create bar charts that visualize the comparisons shown in both tables from the prior item.
+
+6.  Create a binary variable indicating perceived discrimination. "Yes" should be coded as 1, "No" should be coded as 0, and "Don't know" should be coded as missing. Create a two-way frequency table that shows how this new variable maps to the original variable, including missing values.
+
+7.  Run a regression with `avg_disgust` as the dependent variable and `gender` and `immstatus` as independent variables. Make sure both independent variables are treated as factor (qualitative) variables.
+
+8.  Run a regression with the binary discrimination measure (created in step 6) as the dependent variable and `gender` and `immstatus` as independent variables. Make sure both independent variables are treated as factor (qualitative) variables.
+
+[^04-lab-1]: This is a modified version of data obtained from Sønderskov and colleagues: <https://doi.org/10.17605/OSF.IO/62BV5> ([CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/))
+
+::: {.content-visible unless-profile="excel"}
+After completing all of this, you should save your [do-file]{.content-visible when-profile="stata"}[R script]{.content-visible when-profile="r"} in a folder that is convenient to access. If you are submitting work to an instructor, they will likely want you to send them both your [do-file]{.content-visible when-profile="stata"}[R script]{.content-visible when-profile="r"} and a Word doc containing your results for items 2-8.
+:::

@@ -1,0 +1,48 @@
+# Preface {.unnumbered}
+
+This is a guide to learning [Stata]{.content-visible when-profile="stata"}[R]{.content-visible when-profile="r"}. It is meant to be a companion to the 2nd edition of *Statistics Minus the Math*: <https://minusthemath.com/2e/>
+
+Even if you are not using that textbook, you are welcome to use this guide.
+
+::: {.content-visible when-profile="stata"}
+Some similar materials are available for learning R at the sister site: <https://learndata.net/r-guide>
+:::
+
+::: {.content-visible when-profile="r"}
+Some similar materials are available for learning Stata at the sister site: <https://learndata.net/stata-guide>
+:::
+
+## Contents
+
+::: {.content-visible when-profile="stata"}
+The main contents of this site will consist of videos you can watch, organized into four parts that correspond to the first four chapters of *Statistics Minus the Math*. Each part has 3-4 videos.
+
+Below each video, there is a list of key concepts/commands from the video, along with examples of the commands being used.
+:::
+
+::: {.content-visible when-profile="r"}
+In each main section of the guide, you'll see a model script, followed by a list of key concepts and syntax that will be helpful to know. To understand the model script, you should try running it yourself (e.g., by copy-pasting it into RStudio).
+:::
+
+In the final section of each part, I provide an exercise where you can try out what you just learned. Often, there is additional description of the dataset used in the *Statistics Minus the Math* text.
+
+::: {.content-visible when-profile="stata"}
+## Accessing Stata
+
+To get started using Stata on your own, you will probably need to install Stata on your device (requires buying a license) or install software allowing you to access Stata remotely through your school. Exact instructions will vary, depending on the type of device you have and the manner of access you are using. If you are at a university or other school, please consult their resources on how to access Stata from your device.
+:::
+
+::: {.content-visible when-profile="r"}
+## What this guide will and won't cover
+
+The goal here is dip your toes into the waters of programming in R. Thus, I will provide code that I hope is relatively easy to understand. I will not always follow best practices for coding because I believe doing so sometimes makes the code more difficult for a total beginner. You can learn those best practices later, and there are many great resources available to help (such as [R4DS](https://r4ds.hadley.nz/)).
+
+As such, I will not teach you to write "good code" (the kind that follows best practices) in these lessons. Instead, I hope you can write code that is good enough to show you some of the power of R and some of the ways data is being processed (without getting too overwhelmed if you are new to programming). Getting this basic familiarity with R will help prepare you to engage with more advanced resources that can teach you to write better code.
+
+## Accessing R
+
+I assume you will be executing R code using RStudio. You have two options for how to get these programs running:
+
+1.  You can download and install both R and RStudio on your computer. There are several installation guides available online, such as this one: <https://moderndive.com/1-getting-started.html>
+2.  You can use RStudio in a web browser through Posit Cloud, which offers free accounts with limited features: <https://posit.cloud/>
+:::

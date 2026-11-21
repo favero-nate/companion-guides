@@ -1,0 +1,25 @@
+# Put it into Practice {.unnumbered}
+
+Now it's time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.
+
+::: {.content-visible unless-profile="excel"}
+Unless your instructor tells you otherwise, use an [do-file]{.content-visible when-profile="stata"}[R script]{.content-visible when-profile="r"} to execute all code needed to accomplish the following (note: step 1 can be completed outside of [Stata]{.content-visible when-profile="stata"}[R]{.content-visible when-profile="r"}):
+:::
+
+1.  Load in the World Development Indicators dataset (`development.dta`).[^03-lab-1] You can download it [here](https://learndata.net/development.dta) and save it on your computer. [Or you can load the file directly into Stata through the Internet with the following URL: <https://learndata.net/development.dta>]{.content-visible when-profile="stata"} [Or you can load the file directly into R through the Internet with the following URL: <https://learndata.net/development.dta>]{.content-visible when-profile="r"}
+
+2.  Select three variables to examine. Choose variables that have **not** already been transformed (transformed variables have names starting with `log_` or `z_` or ending with `_z` or `_01`).
+
+3.  For each of your three variables, create at least one transformation of the variable.
+
+4.  Generate a table of summary statistics that includes both the untransformed and transformed versions of your three variables.
+
+5.  For each possible pairing of your three untransformed variables, find the correlation coefficient and create a scatter plot. Note that there should be three pairings in all (if your variables are A, B, and C, the pairings are: (1) A with B, (2) A with C, and (3) B with C).
+
+6.  Run a few different regressions (at least three) using different combinations of the transformed and untransformed versions of your three variables (you can mix and match).
+
+[^03-lab-1]: This is a modified version of data obtained from The World Bank: <https://datacatalog.worldbank.org/search/dataset/0037712/world-development-indicators> ([CC-BY 4.0](https://datacatalog.worldbank.org/public-licenses?fragment=cc))
+
+::: {.content-visible unless-profile="excel"}
+After completing all of this, you should save your [do-file]{.content-visible when-profile="stata"}[R script]{.content-visible when-profile="r"} in a folder that is convenient to access. If you are submitting work to an instructor, they will likely want you to send them both your [do-file]{.content-visible when-profile="stata"}[R script]{.content-visible when-profile="r"} and a Word doc containing your results for items 4-6.
+:::

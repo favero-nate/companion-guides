@@ -1,0 +1,93 @@
+# Regression with Qualitative Variables {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+{{< video https://youtu.be/l-8E0fQfyIU >}}
+
+## Key concepts/commands:
+
+1.  `log close`: stop any log currently being kept
+
+    ```         
+    capture log close
+    ```
+
+2.  `log`: keep a log file
+
+    ```         
+    log using ch4_part3_log.txt, replace text
+    ```
+
+3.  `i.` prefix: treat a (numeric) variable as a factor (qualitative) variable
+
+    ```         
+    reg combined_score i.schooltype_factor, base
+    ```
+:::
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+#install.packages("tidyverse")  # uncomment if tidyverse not installed
+#install.packages("fastDummies")  # uncomment if fastDummies not installed
+library(haven)
+library(tidyverse)
+library(fastDummies)
+
+data <- read_dta("https://learndata.net/nycschools.dta")
+
+# basic data processing needed to use this dataset, copied from Ch. 3:
+  # convert quantitative variables currently
+  # stored as characters to numbers
+  data <- data |> mutate(iep = parse_number(iep))
+  data <- data |> mutate(blackhispanic = parse_number(blackhispanic))
+  data <- data |> mutate(ell = parse_number(ell))
+  data <- data |> mutate(thgrmathela = parse_number(thgrmathela))
+  
+  # rename thgrmathela to something more descriptive
+  data <- data |> rename(combined_score = thgrmathela)
+
+# for string variables, they can be directly included
+# in a regression as a qualitative independent variable
+summary(lm(combined_score ~ schooltype, data = data))
+
+# another way to get this result is to create dummy 
+# (binary) variables and enter them individually into
+# a regression (note: the variable schooltype_K-8 has
+# a hyphen in it, which requires referring to it as 
+# `schooltype_K-8`)
+data <- data |>
+  dummy_cols("schooltype")
+summary(lm(combined_score ~ `schooltype_K-8` + schooltype_Middle, data = data))
+
+
+# if a qualitative variable is stored numerically, it
+# will be (incorrectly) treated as a quantitative variable
+# by default:
+summary(lm(combined_score ~ district, data = data))
+
+# we can enclose the variable name with factor() so
+# R will know to treat the variable as qualitative
+summary(lm(combined_score ~ factor(district), data = data))
+
+# as in part 1, we will convert overallgrade to a factor
+# and then to a series of dummies
+data <- data |>
+  mutate(grade_factor = factor(overallgrade, exclude = ""))
+data <- data |>
+  dummy_cols("grade_factor")
+
+# we can perform ordinary (linear) regression with a dummy
+# dependent variable, which is perhaps the simplest way to
+# analyze a qualitative dependent variable using regression
+summary(lm(grade_factor_A ~ schooltype + combined_score, data = data))
+
+# the regression above showed us predictions for a school
+# receiving an overall grade of A; if we want predictions
+# for each possible grade, we can run a series of regressions
+summary(lm(grade_factor_B ~ schooltype + combined_score, data = data))
+summary(lm(grade_factor_C ~ schooltype + combined_score, data = data))
+summary(lm(grade_factor_D ~ schooltype + combined_score, data = data))
+summary(lm(grade_factor_F ~ schooltype + combined_score, data = data))
+```
+:::
