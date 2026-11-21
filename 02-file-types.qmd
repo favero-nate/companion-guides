@@ -1,0 +1,21 @@
+# File Types {.unnumbered}
+
+You can download the zip file referenced in this lesson here: <https://learndata.net/binge.zip>
+
+{{< video https://youtu.be/A5L_QsfQU9U >}}
+
+## Key concepts:
+
+1.  zip file: a compressed file that can contain several files/folders within it
+
+2.  Excel file: not a plain text file, created for use with Microsoft Excel and uses file ending ".xls" or ".xlsx"
+
+3.  fixed width file: a plain text file format that uses a fixed number of characters for each column (requires access to a dictionary to indicate each column's width), used to be popular but now less widely used
+
+4.  tab delimited file: a plain text file format that uses tabs to indicate the next column
+
+5.  R file: not a plain text file, created for use with the statistical program R and uses file ending ".Rdata", ".Rda", or ".Rds"
+
+6.  Stata data file: not a plain text file, created for use with the statistical program Stata and uses file ending ".dta"
+
+7.  comma delimited file: a plain text file format that uses commas to indicate the next column, can use file ending ".csv"
