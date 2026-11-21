@@ -1,0 +1,54 @@
+# Instructor Notes {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+## Sample course outline
+
+I've constructed this outline to span 10 weeks, since a typical 15 week course on introductory statistics may reserve some weeks for exams or other content.
+
+### Week 1: Getting Started (*Stata Companion Guide* Part 1)
+
+Depending on what kind of setup you have for running Stata (e.g., in a virtual desktop environment), students may struggle to figure out how to transfer graphs from Stata into Word. You may want to walk students through how to do this. You might also want to show students what it means to have a clean do file that will execute in full.
+
+### Week 2: Description, File Types (*Stata Companion Guide* Part 2)
+
+Especially relevant to this chapter, many students struggle with basic file management. You might want to spend some time showing them what it looks like to have a good folder structure for data work (e.g., using the cloud file storage system provided by your school).
+
+### Week 3: Transformations, Associations (*Stata Companion Guide* Part 3)
+
+I designed the "Put it into Practice" assignment with the intention that students would get some practice with executing transformations and regressions in Stata. The actual transformations and regression they perform may not be very useful/informative. Still, this excercise can form the basis of a constructive follow-up discussion in class (e.g., comparing regression results from standardized vs. unstandardized variables).
+
+### Week 4: Recoding Variables and Comparing Means/Medians (*Stata Companion Guide* - first section of Part 4)
+
+Part 4 of the guide has more material (and is more difficult) than the other parts, so I recommend splitting it across two weeks. In this first week, you can cover just the section titled "Qualitative-Quantitative Relationships."
+
+### Week 5: Crosstabs/Graphs and Regression with Qualitative Variables (Stata Companion Guide - rest of Part 4)
+
+If you are using the *Statistics Minus the Math* textbook, note that this week's "Put it into Practice" dataset does not currently match Ch. 4 of the textbook, but I plan to update the textbook in the future so that they match.
+
+### Week 6: More Data Management
+
+<https://stata.jeremiahdittmar.info/data-manipulation/>
+
+Note: To align with Ch. 6 of *Statistics Minus the Math*, I would also show students how to add chi-square test results to a crosstab using the "chi2" option (see help file for [tabulate twoway](https://www.stata.com/manuals/rtabulatetwoway.pdf)).
+
+### Week 7: Subsetting and Labeling Data
+
+<https://stats.oarc.ucla.edu/stata/modules/ubsetting-data/>
+
+<https://stats.oarc.ucla.edu/stata/modules/labeling-data/>
+
+### Week 8: Making Nice Graphs
+
+<https://stata.jeremiahdittmar.info/graphics/>
+
+### Week 9: Making Nice Tables
+
+<https://repec.sowi.unibe.ch/stata/estout/esttab.html>
+
+### Week 10: Plotting Predicted Values from Regression
+
+<https://stats.oarc.ucla.edu/stata/seminars/interactions-stata/>
+:::
+
+::: {.content-visible when-profile="r"}
+:::

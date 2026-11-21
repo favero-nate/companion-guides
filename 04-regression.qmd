@@ -29,12 +29,11 @@
 
 ``` r
 #install.packages("tidyverse")  # uncomment if tidyverse not installed
-#install.packages("fastDummies")  # uncomment if fastDummies not installed
-library(haven)
+#install.packages("rio")  # uncomment if rio not installed
 library(tidyverse)
-library(fastDummies)
+library(rio)
 
-data <- read_dta("https://learndata.net/nycschools.dta")
+data <- import("https://learndata.net/nycschools.dta")
 
 # basic data processing needed to use this dataset, copied from Ch. 3:
   # convert quantitative variables currently
@@ -51,16 +50,6 @@ data <- read_dta("https://learndata.net/nycschools.dta")
 # in a regression as a qualitative independent variable
 summary(lm(combined_score ~ schooltype, data = data))
 
-# another way to get this result is to create dummy 
-# (binary) variables and enter them individually into
-# a regression (note: the variable schooltype_K-8 has
-# a hyphen in it, which requires referring to it as 
-# `schooltype_K-8`)
-data <- data |>
-  dummy_cols("schooltype")
-summary(lm(combined_score ~ `schooltype_K-8` + schooltype_Middle, data = data))
-
-
 # if a qualitative variable is stored numerically, it
 # will be (incorrectly) treated as a quantitative variable
 # by default:
@@ -69,25 +58,5 @@ summary(lm(combined_score ~ district, data = data))
 # we can enclose the variable name with factor() so
 # R will know to treat the variable as qualitative
 summary(lm(combined_score ~ factor(district), data = data))
-
-# as in part 1, we will convert overallgrade to a factor
-# and then to a series of dummies
-data <- data |>
-  mutate(grade_factor = factor(overallgrade, exclude = ""))
-data <- data |>
-  dummy_cols("grade_factor")
-
-# we can perform ordinary (linear) regression with a dummy
-# dependent variable, which is perhaps the simplest way to
-# analyze a qualitative dependent variable using regression
-summary(lm(grade_factor_A ~ schooltype + combined_score, data = data))
-
-# the regression above showed us predictions for a school
-# receiving an overall grade of A; if we want predictions
-# for each possible grade, we can run a series of regressions
-summary(lm(grade_factor_B ~ schooltype + combined_score, data = data))
-summary(lm(grade_factor_C ~ schooltype + combined_score, data = data))
-summary(lm(grade_factor_D ~ schooltype + combined_score, data = data))
-summary(lm(grade_factor_F ~ schooltype + combined_score, data = data))
 ```
 :::

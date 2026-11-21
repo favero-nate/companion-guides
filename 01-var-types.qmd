@@ -20,7 +20,9 @@
 ## Model script
 
 ``` r
-data <- readRDS(url("https://learndata.net/binge.Rds"))
+install.packages("rio")
+library(rio)
+data <- import("https://learndata.net/binge.Rds", trust = TRUE)
 str(data)
 levels(data$sex_factor)
 ```
@@ -33,10 +35,10 @@ levels(data$sex_factor)
 
 3.  factor variables: sometimes indicated as `fct` for short, these are qualitative variables that take on specific levels (which can be text) from a finite list
 
-4.  `readRDS()`: load an `.Rds` file
+4.  `import()`: flexible command for loading data files, using the `rio`` package
 
     ``` r
-    data <- readRDS(url("https://learndata.net/binge.Rds"))
+    data <- import("https://learndata.net/binge.Rds", trust = TRUE)
     ```
 
 5.  `str()`: show the variable type for each variable in a dataset

@@ -47,12 +47,13 @@
 
 ``` r
 #install.packages("tidyverse")  # uncomment if tidyverse not installed
+#install.packages("rio")  # uncomment if rio not installed
 #install.packages("gmodels")  # uncomment if gmodels not installed
-library(haven)
 library(tidyverse)
+library(rio)
 library(gmodels)
 
-data <- read_dta("https://learndata.net/nycschools.dta")
+data <- import("https://learndata.net/nycschools.dta")
 
 # basic data processing needed to use this dataset, copied from Ch. 3:
   # convert quantitative variables currently
@@ -82,26 +83,24 @@ CrossTable(data$overallgrade, data$schooltype, prop.c = FALSE, prop.t = FALSE, p
 # an alternative if we prefer seeing column proportions:
 CrossTable(data$overallgrade, data$schooltype, prop.r = FALSE, prop.t = FALSE, prop.chisq = FALSE)
 
-# as in part 1, we will convert overallgrade to a factor
-# variable
-data <- data |>
-  mutate(grade_factor = factor(overallgrade, exclude = ""))
+# to check for statistical significance, we can set chisq to TRUE:
+CrossTable(data$overallgrade, data$schooltype, prop.r = FALSE, prop.t = FALSE, prop.chisq = FALSE, chisq = TRUE)
 
 # make a simple bar chart with the ggplot2 package (part of core tidyverse)
 data |>
-  ggplot(aes(grade_factor)) +
+  ggplot(aes(overallgrade)) +
   geom_bar()
 
-# filter out the observations where grade_factor is missing (NA)
+# filter out the observations where overallgrade is blank (missing)
 data |>
-  filter(!is.na(grade_factor)) |>
-  ggplot(aes(grade_factor)) +
+  filter(overallgrade != "") |>
+  ggplot(aes(overallgrade)) +
   geom_bar()
 
 # create a grouped bar graph, grouping by schooltype
 data |>
-  filter(!is.na(grade_factor)) |>
-  ggplot(aes(grade_factor)) +
+  filter(overallgrade != "") |>
+  ggplot(aes(overallgrade)) +
   geom_bar() +
   facet_wrap(~ schooltype)
 
@@ -110,8 +109,8 @@ data |>
 # for example, we can use three rows so our subgraphs are
 # shown in a column rather than side-by-side
 data |>
-  filter(!is.na(grade_factor)) |>
-  ggplot(aes(grade_factor)) +
+  filter(overallgrade != "") |>
+  ggplot(aes(overallgrade)) +
   geom_bar() +
   facet_wrap(~ schooltype, nrow = 3)
 
@@ -119,21 +118,21 @@ data |>
 # grade_factor is shown through the "fill" color while
 # schooltype is our main x variable
 data |>
-  filter(!is.na(grade_factor)) |>
-  ggplot(aes(fill = grade_factor, x = schooltype)) +
+  filter(overallgrade != "") |>
+  ggplot(aes(fill = overallgrade, x = schooltype)) +
   geom_bar(position = "dodge")
 
 # change the label (title) for the "fill" legend to "Grade"
 data |>
-  filter(!is.na(grade_factor)) |>
-  ggplot(aes(fill = grade_factor, x = schooltype)) +
+  filter(overallgrade != "") |>
+  ggplot(aes(fill = overallgrade, x = schooltype)) +
   geom_bar(position = "dodge") +
   labs(fill = "Grade")
 
 # we can also display this information in a stacked bar chart
 data |>
-  filter(!is.na(grade_factor)) |>
-  ggplot(aes(fill = grade_factor, x = schooltype)) +
+  filter(overallgrade != "") |>
+  ggplot(aes(fill = overallgrade, x = schooltype)) +
   geom_bar(position = "fill") +
   labs(y = "proportion", fill = "Grade")
 ```

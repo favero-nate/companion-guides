@@ -19,11 +19,12 @@
 
 ``` r
 #install.packages("tidyverse")  # uncomment if tidyverse not installed
-library(haven)
+#install.packages("rio")  # uncomment if rio not installed
 library(tidyverse)
+library(rio)
 
 # load in and prepare the data
-data <- read_dta("https://learndata.net/nycschools.dta")
+data <- import("https://learndata.net/nycschools.dta")
 data <- data |> mutate(iep = parse_number(iep))
 data <- data |> mutate(blackhispanic = parse_number(blackhispanic))
 data <- data |> mutate(ell = parse_number(ell))

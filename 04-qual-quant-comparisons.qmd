@@ -84,14 +84,13 @@ Part I of this chapter is split up into two videos:
 setwd("C:/Users/favero/Downloads")
 
 #install.packages("tidyverse")  # uncomment if tidyverse not installed
+#install.packages("rio")  # uncomment if rio not installed
 #install.packages("psych")  # uncomment if psych not installed
-#install.packages("fastDummies")  # uncomment if fastDummies not installed
-library(haven)
 library(tidyverse)
+library(rio)
 library(psych)
-library(fastDummies)
 
-data <- read_dta("https://learndata.net/nycschools.dta")
+data <- import("https://learndata.net/nycschools.dta")
 
 # basic data processing needed to use this dataset, copied from Ch. 3:
   # convert quantitative variables currently
@@ -123,37 +122,10 @@ boxplot(combined_score ~ schooltype, data = data)
 # let's use a different qualitative variable (overallgrade)
 boxplot(combined_score ~ overallgrade, data = data)
 
-# create a factor variable from a string variable
-data <- data |>
-  mutate(grade_factor = factor(overallgrade, exclude = ""))
-
-# now recreate the prior boxplot using the factor variable,
-# and since blanks got recoded as NAs (missing), they'll
-# be excluded from the plot
-boxplot(combined_score ~ grade_factor, data = data)
-
-# create a table to check mapping of new variable to old one
-table(data$overallgrade, data$grade_factor, useNA = "ifany")
-
-# create a binary indicator for one of the values of a string variable
-data <- data |>
-  mutate(grade_A = case_when(
-    overallgrade=="A" ~ 1,
-    overallgrade=="" ~ NA,
-    .default  = 0
-    )
-  )
-
-# create a table to check mapping of new variable to old one
-table(data$overallgrade, data$grade_A, useNA = "ifany")
-
-# using the fastDummies package, we can quickly convert a factor
-# variable to a set of binary variables (with NAs handled correctly)
-data <- data |>
-  dummy_cols("grade_factor")
-
-# save the dataframe as a file in my working directory
-saveRDS(data, file="nycschools_modified.rds")
+# now recreate the prior boxplot filtering out blanks
+# (missing values) before creating the plot
+data_nonmissing_grade <- data |> filter(overallgrade != "")
+boxplot(combined_score ~ overallgrade, data = data_nonmissing_grade)
 ```
 
 :::

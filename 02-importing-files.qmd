@@ -1,5 +1,7 @@
 # Importing Files {.unnumbered}
 
+You can download the zip file referenced in this lesson here: <https://learndata.net/binge.zip>
+
 ::: {.content-visible when-profile="stata"}
 {{< video https://youtu.be/alrUd8coFro >}}
 
@@ -46,17 +48,20 @@
 # where this file is located.
 setwd("C:/Users/favero/Downloads")
 
+#install.packages("rio")  # uncomment if rio not installed
+library(rio)
+
 unzip("binge.zip")
 
-data_from_tab <- read.delim("binge.tab")
-?read.delim
+data_from_xls <- import("binge.xls")
 
-#install.packages("tidyverse")  # uncomment if tidyverse not installed
-library(readxl)
-data_from_xls <- read_excel("binge.xls")
+data_from_dta <- import("binge.dta")
 
-library(haven) #this is also installed with tidyverse
-data_from_dta <- read_dta("binge.dta")
+data_from_tab <- import("binge.tab", format = "tsv")
+?import
+
+# save the dataset "data_from_tab" as an R object file in my working directory
+saveRDS(data_from_tab, file = "binge.rds")
 ```
 
 ## Key concepts/syntax:
@@ -73,30 +78,15 @@ data_from_dta <- read_dta("binge.dta")
     unzip("binge.zip")
     ```
 
-3.  `read.delim()`: read in a delimited file (tab delimited by default)
-
-    ``` r
-    data_from_tab <- read.delim("binge.tab")
-    ```
-
-4.  `?`: open a help file for a function or package
+3.  `?`: open a help file for a function or package
 
     ``` r
     ?read.delim
     ```
 
-5.  `read_excel()`: read in an Excel (xls or xlsx) file, using the `readr` package[^02-importing-files-1]
+4.  `saveRDS`: save a dataset
 
     ``` r
-    data_from_xls <- read_excel("binge.xls")
+    saveRDS(data_from_tab, file = "binge.rds")
     ```
-
-6.  `read_dta()`: read in a Stata (dta) file, using the `haven` package
-
-    ``` r
-    data_dta <- read_dta("binge.dta")
-    ```
-
 :::
-
-[^02-importing-files-1]: Note this reads the data in using tidyverse format (a "tibble"). If you like that format or use other resources that rely on the tidyverse, you can import other files using tidyverse commands. For example, you can read csv files with `read_csv()` and tab-delimited files with `read_tsv()`. Both functions are from the `readr` package, which you can accessing by installing `tidyverse` and running `library(tidyverse)`.

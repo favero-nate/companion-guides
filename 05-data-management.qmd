@@ -1,0 +1,152 @@
+# Qualitative-Quantitative Relationships {.unnumbered}
+
+::: {.content-visible when-profile="stata"}
+
+Part I of this chapter is split up into two videos:
+
+{{< video https://youtu.be/WdQ47WnZNDg >}}
+
+{{< video https://youtu.be/p-qsXQLaY4A >}}
+
+## Key concepts/commands:
+
+1.  `clear all`: empty out not just the current dataset but also other things stored in Stata's memory
+
+    ```         
+    clear all
+    ```
+
+2.  `bys`: repeat a command for different subsets of the data
+
+    ```         
+    bys schooltype: sum combined_score, detail
+    ```
+
+3.  `over()` option: for many graphs, allows for grouping by a qualitative variable
+
+    ```         
+    graph box combined_score, over(schooltype)
+    ```
+
+4.  `encode`: create a numeric version of a string variable
+
+    ```         
+    encode overallgrade, gen(grade_factor)
+    ```
+
+5.  `replace`: change (some) values for a variable
+
+    ```         
+    replace grade_A = 1 if overallgrade == "A"
+    ```
+
+6.  `if`: impose a restriction on a command (e.g., only apply to certain observations)
+
+    ```         
+    replace grade_A = 1 if overallgrade == "A"
+    ```
+
+7.  `==`: check whether two things are equal
+
+    ```         
+    replace grade_A = 1 if overallgrade == "A"
+    ```
+
+8.  `!=`: means "not equal" (the exclamation point means "not")
+
+    ```         
+    replace grade_A = 0 if overallgrade != "A" & overallgrade != ""
+    ```
+
+9.  `missing` option with `tab`: include missing values in frequency table
+
+    ```         
+    tab overallgrade grade_A, missing
+    ```
+
+10. `gen()` option with `tab`: create binary variables indicating each value from a frequency table
+
+    ```         
+    tab overallgrade, gen(grade_)
+    ```
+
+11. `save`: save the current dataset
+
+    ```         
+    save "nycschools_modified.dta", replace
+    ```
+:::
+
+::: {.content-visible when-profile="r"}
+## Model script
+
+``` r
+setwd("C:/Users/favero/Downloads")
+
+#install.packages("tidyverse")  # uncomment if tidyverse not installed
+#install.packages("rio")  # uncomment if rio not installed
+#install.packages("fastDummies")  # uncomment if fastDummies not installed
+library(tidyverse)
+library(rio)
+library(fastDummies)
+
+data <- import("https://learndata.net/nycschools.dta")
+
+# basic data processing needed to use this dataset, copied from Ch. 3:
+  # convert quantitative variables currently
+  # stored as characters to numbers
+  data <- data |> mutate(iep = parse_number(iep))
+  data <- data |> mutate(blackhispanic = parse_number(blackhispanic))
+  data <- data |> mutate(ell = parse_number(ell))
+  data <- data |> mutate(thgrmathela = parse_number(thgrmathela))
+  
+  # rename thgrmathela to something more descriptive
+  data <- data |> rename(combined_score = thgrmathela)
+
+# create a factor variable from a string variable
+data <- data |>
+  mutate(grade_factor = factor(overallgrade, exclude = ""))
+
+# create a table to check mapping of new variable to old one
+table(data$overallgrade, data$grade_factor, useNA = "ifany")
+
+# create a binary indicator for one of the values of a string variable
+data <- data |>
+  mutate(grade_A = case_when(
+    overallgrade=="A" ~ 1,
+    overallgrade=="" ~ NA,
+    .default  = 0
+    )
+  )
+
+# create a table to check mapping of new variable to old one
+table(data$overallgrade, data$grade_A, useNA = "ifany")
+
+# using the fastDummies package, we can quickly convert a factor
+# variable to a set of binary variables (with NAs handled correctly)
+data <- data |>
+  dummy_cols("grade_factor")
+
+# as in part 1, we will convert overallgrade to a factor
+# and then to a series of dummies
+data <- data |>
+  mutate(grade_factor = factor(overallgrade, exclude = ""))
+data <- data |>
+  dummy_cols("grade_factor")
+
+# one reason it can be helpful to create such dummy variables:
+# we can perform ordinary (linear) regression with a dummy
+# dependent variable, which is perhaps the simplest way to
+# analyze a qualitative dependent variable using regression
+summary(lm(grade_factor_A ~ schooltype + combined_score, data = data))
+
+# the regression above showed us predictions for a school
+# receiving an overall grade of A; if we want predictions
+# for each possible grade, we can run a series of regressions
+summary(lm(grade_factor_B ~ schooltype + combined_score, data = data))
+summary(lm(grade_factor_C ~ schooltype + combined_score, data = data))
+summary(lm(grade_factor_D ~ schooltype + combined_score, data = data))
+summary(lm(grade_factor_F ~ schooltype + combined_score, data = data))
+```
+
+:::

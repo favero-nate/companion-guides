@@ -53,10 +53,11 @@
 
 ``` r
 #install.packages("tidyverse")  # uncomment if tidyverse not installed
-library(haven)
+#install.packages("rio")  # uncomment if rio not installed
 library(tidyverse)
+library(rio)
 
-data <- read_dta("https://learndata.net/nycschools.dta")
+data <- import("https://learndata.net/nycschools.dta")
 
 # convert quantitative variables currently
 # stored as characters to numbers

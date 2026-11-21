@@ -29,11 +29,12 @@
 
 ``` r
 #install.packages("tidyverse")  # uncomment if tidyverse not installed
-library(haven)
+#install.packages("rio")  # uncomment if rio not installed
 library(tidyverse)
+library(rio)
 
 # load in and prepare the data
-nycschools <- read_dta("https://learndata.net/nycschools.dta")
+nycschools <- import("https://learndata.net/nycschools.dta")
 nycschools <- nycschools |> mutate(thgrmathela = parse_number(thgrmathela))
 nycschools <- nycschools |> rename(combined_score = thgrmathela)
 
