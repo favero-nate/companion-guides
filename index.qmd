@@ -1,11 +1,11 @@
 # Preface {.unnumbered}
 
-This is a guide to learning [Stata]{.content-visible when-profile="stata"}[R]{.content-visible when-profile="r"}. It is meant to be a companion to the 2nd edition of *Statistics Minus the Math*: <https://minusthemath.com/2e/>
+This is a guide to learning [Stata]{.content-visible when-profile="stata"}[R]{.content-visible when-profile="r"}. The structure roughly follows the 2nd edition of *Statistics Minus the Math*: <https://favero-nate.github.io/companion-guides/stata/>
 
 Even if you are not using that textbook, you are welcome to use this guide.
 
 ::: {.content-visible when-profile="stata"}
-Some similar materials are available for learning R at the sister site: <https://learndata.net/r-guide>
+Some similar materials are available for learning R at the sister site: <https://favero-nate.github.io/companion-guides/r/>
 :::
 
 ::: {.content-visible when-profile="r"}
@@ -13,18 +13,17 @@ Some similar materials are available for learning Stata at the sister site: <htt
 :::
 
 ## Contents
+The main contents of this site will consist of videos you can watch, organized into [four]{.content-visible when-profile="stata"}[five]{.content-visible when-profile="r"} parts that can be taught alone or alongside the first several chapters of *Statistics Minus the Math*. Each part has 3-4 videos.
 
 ::: {.content-visible when-profile="stata"}
-The main contents of this site will consist of videos you can watch, organized into four parts that correspond to the first four chapters of *Statistics Minus the Math*. Each part has 3-4 videos.
-
 Below each video, there is a list of key concepts/commands from the video, along with examples of the commands being used.
 :::
 
 ::: {.content-visible when-profile="r"}
-In each main section of the guide, you'll see a model script, followed by a list of key concepts and syntax that will be helpful to know. To understand the model script, you should try running it yourself (e.g., by copy-pasting it into RStudio).
+Below each video, you'll see a model script, followed by a list of key concepts and syntax that will be helpful to know.
 :::
 
-In the final section of each part, I provide an exercise where you can try out what you just learned. Often, there is additional description of the dataset used in the *Statistics Minus the Math* text.
+In the final section of Parts 1-4, I provide an exercise where you can try out what you just learned with a different dataset.
 
 ::: {.content-visible when-profile="stata"}
 ## Accessing Stata
@@ -41,8 +40,8 @@ As such, I will not teach you to write "good code" (the kind that follows best p
 
 ## Accessing R
 
-I assume you will be executing R code using RStudio. You have two options for how to get these programs running:
+I assume you will be executing R code using Positron or RStudio. You have two options for how to get these programs running:
 
-1.  You can download and install both R and RStudio on your computer. There are several installation guides available online, such as this one: <https://moderndive.com/1-getting-started.html>
-2.  You can use RStudio in a web browser through Posit Cloud, which offers free accounts with limited features: <https://posit.cloud/>
+1.  You can download and install both R and Positron/RStudio on your computer. There are several installation guides available online, such as this one: <https://moderndive.com/1-getting-started.html>
+2.  You can use Positron/RStudio in a web browser through Posit Cloud, which offers free accounts with limited features: <https://posit.cloud/>
 :::
