@@ -3,3 +3,17 @@ project:
 
 book:
   title: "R Companion Guide"
+  chapters:
+    - part: "Part 4: Qualitative Variables"
+      chapters:
+      - 04-qual-qual-comparisons.qmd
+      - 04-qual-quant-comparisons.qmd
+      - 04-regression.qmd
+      - 04-lab.qmd
+    - part: "Part 5: Data Management"
+      chapters:
+      - 05-data-management.qmd
+  
+format:
+  pdf:
+    documentclass: scrreprt

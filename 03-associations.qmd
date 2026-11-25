@@ -30,8 +30,10 @@
 ``` r
 #install.packages("tidyverse")  # uncomment if tidyverse not installed
 #install.packages("rio")  # uncomment if rio not installed
+#install.packages("binsreg")  # uncomment if binsreg not installed
 library(tidyverse)
 library(rio)
+library(binsreg)
 
 # load in and prepare the data
 nycschools <- import("https://learndata.net/nycschools.dta")
@@ -52,6 +54,9 @@ plot(overallscore ~ combined_score, data = nycschools)
 
 # add a regression line to the current plot
 abline(lm(overallscore ~ combined_score, data = nycschools))
+
+# create a binned scatter plot
+binsreg(nycschools$combined_score, nycschools$overallscore)
 ```
 
 ## Key concepts/syntax:

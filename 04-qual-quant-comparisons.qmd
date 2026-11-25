@@ -81,8 +81,6 @@ Part I of this chapter is split up into two videos:
 ## Model script
 
 ``` r
-setwd("C:/Users/favero/Downloads")
-
 #install.packages("tidyverse")  # uncomment if tidyverse not installed
 #install.packages("rio")  # uncomment if rio not installed
 #install.packages("psych")  # uncomment if psych not installed

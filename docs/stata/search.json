@@ -14,7 +14,7 @@
     "href": "index.html#contents",
     "title": "Stata Companion Guide",
     "section": "Contents",
-    "text": "Contents\nThe main contents of this site will consist of videos you can watch, organized by the chapters of Statistics Minus the Math. Each chapter will generally have 2-3 videos.\nBelow each video, there is a list of key concepts/commands from the video, along with examples of the commands being used.\nIn the final section of each chapter, I provide an exercise where you can try out what you just learned. Often, there is additional description of the dataset used in the Statistics Minus the Math text.",
+    "text": "Contents\nThe main contents of this site will consist of videos you can watch, organized into four parts that correspond to the first four chapters of Statistics Minus the Math. Each part has 3-4 videos.\nBelow each video, there is a list of key concepts/commands from the video, along with examples of the commands being used.\nIn the final section of each part, I provide an exercise where you can try out what you just learned. Often, there is additional description of the dataset used in the Statistics Minus the Math text.",
     "crumbs": [
       "Preface"
     ]
@@ -36,7 +36,7 @@
     "section": "",
     "text": "Key concepts/commands:\nDataset source: https://onlinestatbook.com/2/case_studies/binge.html",
     "crumbs": [
-      "Ch. 1: Getting Started",
+      "Part 1: Getting Started",
       "Introduction"
     ]
   },
@@ -47,7 +47,7 @@
     "section": "",
     "text": "use: load in a dataset\nuse \"https://learndata.net/binge.dta\"\nclear: empty out any dataset so a new one can be loaded in\nclear\nTo make a simple comment in a do-file, use // or *\n// This is a note to myself, called a \"comment\"\n* Here is another way to leave a note\nTo make a multi-line (or partial-line) comment, use /* to start and */ to end\n/*\nHere is a rather long comment.\nMaybe it is a note about how some of\nthe variables were measured.\n*/",
     "crumbs": [
-      "Ch. 1: Getting Started",
+      "Part 1: Getting Started",
       "Introduction"
     ]
   },
@@ -58,7 +58,7 @@
     "section": "",
     "text": "Key concepts/commands:",
     "crumbs": [
-      "Ch. 1: Getting Started",
+      "Part 1: Getting Started",
       "Simple Graphs"
     ]
   },
@@ -69,7 +69,7 @@
     "section": "",
     "text": "graph bar: create a simple bar graph\ngraph bar, over(sex_text)\ngraph pie: create a simple pie chart\ngraph pie, over(sex_text)\nhist: create a histogram\nhist modrunk\nkdensity: create a k-density plot\nkdensity modrunk\ngraph box: create a boxplot\ngraph box modrunk, hor\nfindit: find a package to install\nfindit vioplot\nvioplot: create a violin plot (requires installation of user package)\nvioplot modrunk, hor\nstripplot: create a strip plot (requires installation of user package)\nstripplot modrunk, jitter(10)",
     "crumbs": [
-      "Ch. 1: Getting Started",
+      "Part 1: Getting Started",
       "Simple Graphs"
     ]
   },
@@ -80,7 +80,7 @@
     "section": "",
     "text": "Key concepts/commands:",
     "crumbs": [
-      "Ch. 1: Getting Started",
+      "Part 1: Getting Started",
       "Variable Types"
     ]
   },
@@ -91,7 +91,7 @@
     "section": "",
     "text": "numeric variables: many different specific numeric types, but they are shown in black or blue in the Data Editor\nstring variables: these are text (non-numeric) variables, and they are shown in red in the Data Editor\ncodebook: show variable information, including the numeric values underlying any “value labels” (for variables showing up in blue)\ncodebook u_fam",
     "crumbs": [
-      "Ch. 1: Getting Started",
+      "Part 1: Getting Started",
       "Variable Types"
     ]
   },
@@ -102,7 +102,7 @@
     "section": "",
     "text": "Now it’s time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.\nUnless your instructor tells you otherwise, use a do-file to execute all commands needed to accomplish the following:\n\nLoad in the social media posts dataset (posts.dta). You can download it here and save it on your computer. Or you can load the file directly into Stata through the web at the following URL: https://learndata.net/posts.dta\n\n\nSelect four variables to examine. Make sure to choose at least one qualitative (or ordinal) variable and one quantitative variable. Note that binary variables (with values of only 0 and 1) are considered qualitative variables.\nFor each of these four variables, make at least two graphs. If you are submitting your work to an instructor, you will probably want to save a copy of each graph in a Word document, which you can then submit to show you completed this assignment.\nTo get your graphs out of Stata and into a Word doc, you can try using copy-paste, although this may not work if you have a remote access setup for using Stata. Another option is to take a screenshot and then paste this into your Word doc. One final option is to click the “save” icon in the window showing the graph, allowing you to save the graph as its own file in a folder of your choosing; before clicking the “Save” button, you will need to change the setting under “Save as type” to something like a PNG or JPEG that can easily be read into Word. In Word, you can then navigate to “insert” a “picture” from your device.\n\nAfter completing all of this, you should save your do-file in a folder that is convenient to access. It is a good idea at the end of your work to try clearing out your Stata session (e.g., typing “clear” in the command box and then hitting Enter) and then running your entire do-file at once, to make sure you have a clean do-file that can fully execute. If you are submitting work to an instructor, they will likely want you to send them both your do-file and a Word doc containing your graphs.",
     "crumbs": [
-      "Ch. 1: Getting Started",
+      "Part 1: Getting Started",
       "Put it into Practice"
     ]
   },
@@ -113,7 +113,7 @@
     "section": "",
     "text": "Key concepts/commands:",
     "crumbs": [
-      "Ch. 2: Description, File Types",
+      "Part 2: Description, File Types",
       "Descriptive Statistics"
     ]
   },
@@ -124,7 +124,7 @@
     "section": "",
     "text": "sum: show descriptive statistics for quantitative variables\nsum modrunk u_fam, detail\n* and ?: wildcard characters\nsum ?_*\ntab modrunk: show a frequency table\ntab modrunk",
     "crumbs": [
-      "Ch. 2: Description, File Types",
+      "Part 2: Description, File Types",
       "Descriptive Statistics"
     ]
   },
@@ -133,9 +133,9 @@
     "href": "02-file-types.html",
     "title": "File Types",
     "section": "",
-    "text": "Key concepts:",
+    "text": "Key concepts:\nYou can download the zip file referenced in this lesson here: https://learndata.net/binge.zip",
     "crumbs": [
-      "Ch. 2: Description, File Types",
+      "Part 2: Description, File Types",
       "File Types"
     ]
   },
@@ -146,7 +146,7 @@
     "section": "",
     "text": "zip file: a compressed file that can contain several files/folders within it\nExcel file: not a plain text file, created for use with Microsoft Excel and uses file ending “.xls” or “.xlsx”\nfixed width file: a plain text file format that uses a fixed number of characters for each column (requires access to a dictionary to indicate each column’s width), used to be popular but now less widely used\ntab delimited file: a plain text file format that uses tabs to indicate the next column\nR file: not a plain text file, created for use with the statistical program R and uses file ending “.Rdata”, “.Rda”, or “.Rds”\nStata data file: not a plain text file, created for use with the statistical program Stata and uses file ending “.dta”\ncomma delimited file: a plain text file format that uses commas to indicate the next column, can use file ending “.csv”",
     "crumbs": [
-      "Ch. 2: Description, File Types",
+      "Part 2: Description, File Types",
       "File Types"
     ]
   },
@@ -155,9 +155,9 @@
     "href": "02-importing-files.html",
     "title": "Importing Files",
     "section": "",
-    "text": "Key concepts/commands:",
+    "text": "Key concepts/commands:\nYou can download the zip file referenced in this lesson here: https://learndata.net/binge.zip",
     "crumbs": [
-      "Ch. 2: Description, File Types",
+      "Part 2: Description, File Types",
       "Importing Files"
     ]
   },
@@ -166,9 +166,9 @@
     "href": "02-importing-files.html#key-conceptscommands",
     "title": "Importing Files",
     "section": "",
-    "text": "cd: set the “working directory,” which is the default folder on your computer in which Stata will look for files and output files\ncd \"C:\\Users\\favero\\OneDrive - american.edu\\minus the math\\companion guides\\datasets\\02\\example files\"\nimport excel: read in an Excel document as a dataset\nimport excel using binge.xls, firstrow\nhelp: used to access Stata help files, often for a specific command\nhelp import excel\ninsheet: old command to read in a plain text file\ninsheet using binge.tab\nhist: a newer way to read in a delimited plain text file\nimport delimited binge.csv",
+    "text": "cd: set the “working directory,” which is the default folder on your computer in which Stata will look for files and output files\ncd \"C:\\Users\\favero\\OneDrive - american.edu\\minus the math\\companion guides\\datasets\\02\\example files\"\nimport excel: read in an Excel document as a dataset\nimport excel using binge.xls, firstrow\nhelp: used to access Stata help files, often for a specific command\nhelp import excel\ninsheet: old command to read in a plain text file\ninsheet using binge.tab\nimport delimited: a newer way to read in a delimited plain text file\nimport delimited binge.csv",
     "crumbs": [
-      "Ch. 2: Description, File Types",
+      "Part 2: Description, File Types",
       "Importing Files"
     ]
   },
@@ -177,9 +177,9 @@
     "href": "02-lab.html",
     "title": "Put it into Practice",
     "section": "",
-    "text": "Now it’s time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.\nUnless your instructor tells you otherwise, use an do-file to execute all code needed to accomplish the following (note: step 1 can be completed outside of Stata):\n\nDownload the ed_nonprofits.zip file, which can be found here and save it on your computer. Extract the files (unzip it) in a convenient folder on your computer.\nSet your working director to the folder where the unzipped files are located. Import each file of the three files from the zip file into Stata, one at a time. Create a file where you can record notes (e.g., a Word file). For each file, write down the name of each file (including the file ending), and then indicate which variable appears first (as the first column) in each file.\nGenerate summary statistics for quantitative variables for the following variables: staff_boardmmbr_2024, finance_rev_indvdon_pct, staff_fulltime_2023, pplsrv_numserved. You can use any of the three files, since all have equivalent data.\nGenerate frequency tables for the following variables: sizestrat, peer_group.\n\nAfter completing all of this, you should save your do-file in a folder that is convenient to access. If you are submitting work to an instructor, they will likely want you to send them both your do-file and a Word doc containing your results for items 2, 3, and 4 above.",
+    "text": "Now it’s time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.\nUnless your instructor tells you otherwise, use an do-file to execute all code needed to accomplish the following (note: step 1 can be completed outside of Stata):\n\nDownload the ed_nonprofits.zip file, which can be found here and save it on your computer. Extract the files (unzip it) in a convenient folder on your computer.\nSet your working director to the folder where the unzipped files are located. Import each file of the three files from the zip file into Stata, one at a time. Create a file where you can record notes (e.g., a Word file). For each file, write down the name of each file (including the file ending), and then indicate which variable appears first (as the first column) in each file.\nGenerate summary statistics for quantitative variables for the following variables: staff_boardmmbr_2024, finance_rev_indvdon_pct, staff_fulltime_2023, pplsrv_numserved. You can use any of the three files, since all have equivalent data.\nGenerate frequency tables for the following variables: sizestrata, peer_group.\n\nAfter completing all of this, you should save your do-file in a folder that is convenient to access. If you are submitting work to an instructor, they will likely want you to send them both your do-file and a Word doc containing your results for items 2, 3, and 4 above.",
     "crumbs": [
-      "Ch. 2: Description, File Types",
+      "Part 2: Description, File Types",
       "Put it into Practice"
     ]
   },
@@ -190,7 +190,7 @@
     "section": "",
     "text": "Key concepts/commands:",
     "crumbs": [
-      "Ch. 3: Transformations, Associations",
+      "Part 3: Transformations, Associations",
       "Transforming Variables"
     ]
   },
@@ -201,7 +201,7 @@
     "section": "",
     "text": "destring: convert a string variable to a numeric variable\ndestring iep blackhispanic ell thgrmathela, replace ignore(\"%\" \"#VALUE!\")\nrename: rename a variable\nrename thgrmathela combined_score\ngen: create a new variable\ngen z_ell = (ell - 13.79202) / 12.33479\nlog(): a function to create a log transformation (based on the natural log)\ngen log_ell = log(ell)\norder: rearrange the ordering of variables\norder log_ell, after(ell)\ndrop: delete variables (or delete observations, as we will learn about later)\ndrop z_ell\negen: another way to create a new variable, relying on a specific set of functions for creating new variables\negen z_ell = std(ell)",
     "crumbs": [
-      "Ch. 3: Transformations, Associations",
+      "Part 3: Transformations, Associations",
       "Transforming Variables"
     ]
   },
@@ -212,7 +212,7 @@
     "section": "",
     "text": "Key concepts/commands:",
     "crumbs": [
-      "Ch. 3: Transformations, Associations",
+      "Part 3: Transformations, Associations",
       "Associations (for Quantitative Variables)"
     ]
   },
@@ -223,7 +223,7 @@
     "section": "",
     "text": "corr: calculate correlations among variables\ncorr overallscore combined_score\ntwoway scatter: create a scatter plot\ntwoway scatter overallscore combined_score\ntwoway lfit: create a linear (regression) trendline\ntwoway (scatter overallscore combined_score) (lfit overallscore combined_score)",
     "crumbs": [
-      "Ch. 3: Transformations, Associations",
+      "Part 3: Transformations, Associations",
       "Associations (for Quantitative Variables)"
     ]
   },
@@ -234,7 +234,7 @@
     "section": "",
     "text": "Key concepts/commands:",
     "crumbs": [
-      "Ch. 3: Transformations, Associations",
+      "Part 3: Transformations, Associations",
       "Regression"
     ]
   },
@@ -245,7 +245,7 @@
     "section": "",
     "text": "reg: run a linear (OLS) regression\nreg overallscore combined_score ell iep blackhispanic economicneedindex\nmonospace fonts: often used to display text in programming contexts, also useful for displaying raw text output from many statistical software packages",
     "crumbs": [
-      "Ch. 3: Transformations, Associations",
+      "Part 3: Transformations, Associations",
       "Regression"
     ]
   },
@@ -256,7 +256,7 @@
     "section": "",
     "text": "Now it’s time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.\nUnless your instructor tells you otherwise, use an do-file to execute all code needed to accomplish the following (note: step 1 can be completed outside of Stata):\nAfter completing all of this, you should save your do-file in a folder that is convenient to access. If you are submitting work to an instructor, they will likely want you to send them both your do-file and a Word doc containing your results for items 4-6.",
     "crumbs": [
-      "Ch. 3: Transformations, Associations",
+      "Part 3: Transformations, Associations",
       "Put it into Practice"
     ]
   },
@@ -267,29 +267,29 @@
     "section": "",
     "text": "This is a modified version of data obtained from The World Bank: https://datacatalog.worldbank.org/search/dataset/0037712/world-development-indicators (CC-BY 4.0)↩︎",
     "crumbs": [
-      "Ch. 3: Transformations, Associations",
+      "Part 3: Transformations, Associations",
       "Put it into Practice"
     ]
   },
   {
-    "objectID": "04-quant-qual-comparisons.html",
-    "href": "04-quant-qual-comparisons.html",
+    "objectID": "04-qual-quant-comparisons.html",
+    "href": "04-qual-quant-comparisons.html",
     "title": "Qualitative-Quantitative Relationships",
     "section": "",
     "text": "Key concepts/commands:\nPart I of this chapter is split up into two videos:",
     "crumbs": [
-      "Ch. 4: Qualitative Variables",
+      "Part 4: Qualitative Variables",
       "Qualitative-Quantitative Relationships"
     ]
   },
   {
-    "objectID": "04-quant-qual-comparisons.html#key-conceptscommands",
-    "href": "04-quant-qual-comparisons.html#key-conceptscommands",
+    "objectID": "04-qual-quant-comparisons.html#key-conceptscommands",
+    "href": "04-qual-quant-comparisons.html#key-conceptscommands",
     "title": "Qualitative-Quantitative Relationships",
     "section": "",
     "text": "clear all: empty out not just the current dataset but also other things stored in Stata’s memory\nclear all\nbys: repeat a command for different subsets of the data\nbys schooltype: sum combined_score, detail\nover() option: for many graphs, allows for grouping by a qualitative variable\ngraph box combined_score, over(schooltype)\nencode: create a numeric version of a string variable\nencode overallgrade, gen(grade_factor)\nreplace: change (some) values for a variable\nreplace grade_A = 1 if overallgrade == \"A\"\nif: impose a restriction on a command (e.g., only apply to certain observations)\nreplace grade_A = 1 if overallgrade == \"A\"\n==: check whether two things are equal\nreplace grade_A = 1 if overallgrade == \"A\"\n!=: means “not equal” (the exclamation point means “not”)\nreplace grade_A = 0 if overallgrade != \"A\" & overallgrade != \"\"\nmissing option with tab: include missing values in frequency table\ntab overallgrade grade_A, missing\ngen() option with tab: create binary variables indicating each value from a frequency table\ntab overallgrade, gen(grade_)\nsave: save the current dataset\nsave \"nycschools_modified.dta\", replace",
     "crumbs": [
-      "Ch. 4: Qualitative Variables",
+      "Part 4: Qualitative Variables",
       "Qualitative-Quantitative Relationships"
     ]
   },
@@ -300,7 +300,7 @@
     "section": "",
     "text": "Key concepts/commands:",
     "crumbs": [
-      "Ch. 4: Qualitative Variables",
+      "Part 4: Qualitative Variables",
       "Qualitative-Qualitative Relationships"
     ]
   },
@@ -311,7 +311,7 @@
     "section": "",
     "text": "col and row options with tab: show percentages by column/row in a two-way table\ntab schooltype overallgrade, col\ntitle() option: add a title at the top (of a graph)\ngraph bar, over(overallgrade) over(schooltype) title(\"Overall school grade by school type\")\nylabels() option: choose the y axis labels (for a graph)\ngraph bar, over(overallgrade) over(schooltype) ylabels(0 10 20 30)\n#(#)# where each # is replaced with a specific number: indicate a sequence of numbers, counting up by a fixed amount\ngraph bar, over(overallgrade) over(schooltype) ylabels(0(10)30)\nrows() option with a by() option: choose the number of rows to use\ngraph bar, over(overallgrade) by(schooltype, rows(1))\nstack asyvars percentage options: make a bar chart into a stacked bar chart\ngraph bar, over(overallgrade) over(schooltype) stack asyvars percentage",
     "crumbs": [
-      "Ch. 4: Qualitative Variables",
+      "Part 4: Qualitative Variables",
       "Qualitative-Qualitative Relationships"
     ]
   },
@@ -322,7 +322,7 @@
     "section": "",
     "text": "Key concepts/commands:",
     "crumbs": [
-      "Ch. 4: Qualitative Variables",
+      "Part 4: Qualitative Variables",
       "Regression with Qualitative Variables"
     ]
   },
@@ -333,7 +333,7 @@
     "section": "",
     "text": "log close: stop any log currently being kept\ncapture log close\nlog: keep a log file\nlog using ch4_part3_log.txt, replace text\ni. prefix: treat a (numeric) variable as a factor (qualitative) variable\nreg combined_score i.schooltype_factor, base",
     "crumbs": [
-      "Ch. 4: Qualitative Variables",
+      "Part 4: Qualitative Variables",
       "Regression with Qualitative Variables"
     ]
   },
@@ -344,7 +344,7 @@
     "section": "",
     "text": "Now it’s time to try things out for yourself. Complete each of the following steps, based on what we learned in this chapter.\nUnless your instructor tells you otherwise, use an do-file to execute all code needed to accomplish the following:\nAfter completing all of this, you should save your do-file in a folder that is convenient to access. If you are submitting work to an instructor, they will likely want you to send them both your do-file and a Word doc containing your results for items 2-8.",
     "crumbs": [
-      "Ch. 4: Qualitative Variables",
+      "Part 4: Qualitative Variables",
       "Put it into Practice"
     ]
   },
@@ -355,8 +355,68 @@
     "section": "",
     "text": "This is a modified version of data obtained from Sønderskov and colleagues: https://doi.org/10.17605/OSF.IO/62BV5 (CC-BY 4.0)↩︎",
     "crumbs": [
-      "Ch. 4: Qualitative Variables",
+      "Part 4: Qualitative Variables",
       "Put it into Practice"
+    ]
+  },
+  {
+    "objectID": "beyond-this-guide.html",
+    "href": "beyond-this-guide.html",
+    "title": "Beyond this Guide",
+    "section": "",
+    "text": "Presenting results\nThis guide is intended to provide a foundation and get you started in Stata. Beyond this foundation, there are many topics you might want to explore, depending on the nature of your studies. Below are some topics that might be of interest and some suggested resources for learning about them.\nMaking nice (regression) tables: https://repec.sowi.unibe.ch/stata/estout/esttab.html\nCoefficient plots: https://repec.sowi.unibe.ch/stata/coefplot/getting-started.html\nFormatting options for graphs:\nPlotting interactions (moderation effects):",
+    "crumbs": [
+      "Beyond this Guide"
+    ]
+  },
+  {
+    "objectID": "beyond-this-guide.html#presenting-results",
+    "href": "beyond-this-guide.html#presenting-results",
+    "title": "Beyond this Guide",
+    "section": "",
+    "text": "https://stata.jeremiahdittmar.info/graphics/\nhttps://stats.oarc.ucla.edu/stata/modules/graph8/gen-opts/\n\n\n\nhttps://stats.oarc.ucla.edu/stata/seminars/interactions-stata/\nhttps://mattgolder.com/interactions",
+    "crumbs": [
+      "Beyond this Guide"
+    ]
+  },
+  {
+    "objectID": "beyond-this-guide.html#data-management",
+    "href": "beyond-this-guide.html#data-management",
+    "title": "Beyond this Guide",
+    "section": "Data management",
+    "text": "Data management\nSubsetting data: https://stats.oarc.ucla.edu/stata/modules/ubsetting-data/\nLabeling data: https://stats.oarc.ucla.edu/stata/modules/labeling-data/\nBroad overview of data management topics: https://stata.jeremiahdittmar.info/data-manipulation/\nStata merging guide: https://nathanfavero.com/wp-content/uploads/Stata_Merging_Guide.pdf\nAggregating data: https://stats.oarc.ucla.edu/stata/modules/collapsing-data-across-observations/\nMore advanced programming concepts: https://stata.jeremiahdittmar.info/advanced-programming/",
+    "crumbs": [
+      "Beyond this Guide"
+    ]
+  },
+  {
+    "objectID": "beyond-this-guide.html#analysis",
+    "href": "beyond-this-guide.html#analysis",
+    "title": "Beyond this Guide",
+    "section": "Analysis",
+    "text": "Analysis\nOverview of various statistical tests: https://stats.oarc.ucla.edu/other/mult-pkg/whatstat/\nBeyond ordinary linear regression: https://stats.oarc.ucla.edu/stata/webbooks/reg/chapter4/regressionwith-statachapter-4-beyond-ols/\nRegression diagnostics: https://sscc.wisc.edu/sscc/pubs/RegDiag-Stata/\nBinned scatterplots: https://michaelstepner.com/binscatter/",
+    "crumbs": [
+      "Beyond this Guide"
+    ]
+  },
+  {
+    "objectID": "instructor-notes.html",
+    "href": "instructor-notes.html",
+    "title": "Instructor Notes",
+    "section": "",
+    "text": "Sample course outline\nI’ve constructed this outline to span 10 weeks, since a typical 15 week course on introductory statistics may reserve some weeks for exams or other content.",
+    "crumbs": [
+      "Instructor Notes"
+    ]
+  },
+  {
+    "objectID": "instructor-notes.html#sample-course-outline",
+    "href": "instructor-notes.html#sample-course-outline",
+    "title": "Instructor Notes",
+    "section": "",
+    "text": "Week 1: Getting Started (Stata Companion Guide Part 1)\nDepending on what kind of setup you have for running Stata (e.g., in a virtual desktop environment), students may struggle to figure out how to transfer graphs from Stata into Word. You may want to walk students through how to do this. You might also want to show students what it means to have a clean do file that will execute in full.\n\n\nWeek 2: Description, File Types (Stata Companion Guide Part 2)\nEspecially relevant to this chapter, many students struggle with basic file management. You might want to spend some time showing them what it looks like to have a good folder structure for data work (e.g., using the cloud file storage system provided by your school).\n\n\nWeek 3: Transformations, Associations (Stata Companion Guide Part 3)\nI designed the “Put it into Practice” assignment with the intention that students would get some practice with executing transformations and regressions in Stata. The actual transformations and regression they perform may not be very useful/informative. Still, this excercise can form the basis of a constructive follow-up discussion in class (e.g., comparing regression results from standardized vs. unstandardized variables).\n\n\nWeek 4: Recoding Variables and Comparing Means/Medians (Stata Companion Guide - first section of Part 4)\nPart 4 of the guide has more material (and is more difficult) than the other parts, so I recommend splitting it across two weeks. In this first week, you can cover just the section titled “Qualitative-Quantitative Relationships.”\n\n\nWeek 5: Crosstabs/Graphs and Regression with Qualitative Variables (Stata Companion Guide - rest of Part 4)\nIf you are using the Statistics Minus the Math textbook, note that this week’s “Put it into Practice” dataset does not currently match Ch. 4 of the textbook, but I plan to update the textbook in the future so that they match.\n\n\nWeek 6: More Data Management\nhttps://stata.jeremiahdittmar.info/data-manipulation/\nNote: To align with Ch. 6 of Statistics Minus the Math, I would also show students how to add chi-square test results to a crosstab using the “chi2” option (see help file for tabulate twoway).\n\n\nWeek 7: Subsetting and Labeling Data\nhttps://stats.oarc.ucla.edu/stata/modules/ubsetting-data/\nhttps://stats.oarc.ucla.edu/stata/modules/labeling-data/\n\n\nWeek 8: Making Nice Graphs\nhttps://stata.jeremiahdittmar.info/graphics/\n\n\nWeek 9: Making Nice Tables\nhttps://repec.sowi.unibe.ch/stata/estout/esttab.html\n\n\nWeek 10: Plotting Predicted Values from Regression\nhttps://stats.oarc.ucla.edu/stata/seminars/interactions-stata/",
+    "crumbs": [
+      "Instructor Notes"
     ]
   }
 ]

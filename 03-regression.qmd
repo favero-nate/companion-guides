@@ -23,13 +23,13 @@
 library(tidyverse)
 library(rio)
 
-# load in and prepare the data
-data <- import("https://learndata.net/nycschools.dta")
-data <- data |> mutate(iep = parse_number(iep))
-data <- data |> mutate(blackhispanic = parse_number(blackhispanic))
-data <- data |> mutate(ell = parse_number(ell))
-data <- data |> mutate(thgrmathela = parse_number(thgrmathela))
-data <- data |> rename(combined_score = thgrmathela)
+# load in and prepare the data (using code seen previously)
+  data <- import("https://learndata.net/nycschools.dta")
+  data <- data |> mutate(iep = parse_number(iep))
+  data <- data |> mutate(blackhispanic = parse_number(blackhispanic))
+  data <- data |> mutate(ell = parse_number(ell))
+  data <- data |> mutate(thgrmathela = parse_number(thgrmathela))
+  data <- data |> rename(combined_score = thgrmathela)
 
 # run a regression, then show a summary of its results
 regression1 <- lm(overallscore ~ combined_score, data = data)
@@ -40,6 +40,14 @@ summary(lm(overallscore ~ combined_score, data = data))
 
 # another regression
 regression2 <- lm(overallscore ~ combined_score + ell + iep + blackhispanic + economicneedindex, data = data)
+summary(regression2)
+
+# if you prefer R to avoid scientific notation (when practical),
+# you can change the scipen option in R to a higher value
+# (0 is the default; here we set it to 10)
+options(scipen = 10)
+
+# now, see how scientific notation is barely used in the results
 summary(regression2)
 ```
 
@@ -55,5 +63,11 @@ summary(regression2)
 
     ``` r
     summary(regression1)
+    ```
+
+3.  `options()`: change general options in R, such as scientific notation display settings
+
+    ``` r
+    options(scipen = 10)
     ```
 :::

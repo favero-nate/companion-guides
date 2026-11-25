@@ -1,5 +1,7 @@
-/_book/
+/docs/
 /.Rproj.user/
 /.quarto/
 .bak
+.Rhistory
+.Rproj
 **/*.quarto_ipynb

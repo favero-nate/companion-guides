@@ -1,88 +1,9 @@
-# Qualitative-Quantitative Relationships {.unnumbered}
-
-::: {.content-visible when-profile="stata"}
-
-Part I of this chapter is split up into two videos:
-
-{{< video https://youtu.be/WdQ47WnZNDg >}}
-
-{{< video https://youtu.be/p-qsXQLaY4A >}}
-
-## Key concepts/commands:
-
-1.  `clear all`: empty out not just the current dataset but also other things stored in Stata's memory
-
-    ```         
-    clear all
-    ```
-
-2.  `bys`: repeat a command for different subsets of the data
-
-    ```         
-    bys schooltype: sum combined_score, detail
-    ```
-
-3.  `over()` option: for many graphs, allows for grouping by a qualitative variable
-
-    ```         
-    graph box combined_score, over(schooltype)
-    ```
-
-4.  `encode`: create a numeric version of a string variable
-
-    ```         
-    encode overallgrade, gen(grade_factor)
-    ```
-
-5.  `replace`: change (some) values for a variable
-
-    ```         
-    replace grade_A = 1 if overallgrade == "A"
-    ```
-
-6.  `if`: impose a restriction on a command (e.g., only apply to certain observations)
-
-    ```         
-    replace grade_A = 1 if overallgrade == "A"
-    ```
-
-7.  `==`: check whether two things are equal
-
-    ```         
-    replace grade_A = 1 if overallgrade == "A"
-    ```
-
-8.  `!=`: means "not equal" (the exclamation point means "not")
-
-    ```         
-    replace grade_A = 0 if overallgrade != "A" & overallgrade != ""
-    ```
-
-9.  `missing` option with `tab`: include missing values in frequency table
-
-    ```         
-    tab overallgrade grade_A, missing
-    ```
-
-10. `gen()` option with `tab`: create binary variables indicating each value from a frequency table
-
-    ```         
-    tab overallgrade, gen(grade_)
-    ```
-
-11. `save`: save the current dataset
-
-    ```         
-    save "nycschools_modified.dta", replace
-    ```
-:::
+# Data Management, Qualitative Dependent Variables {.unnumbered}
 
 ::: {.content-visible when-profile="r"}
 ## Model script
 
 ``` r
-setwd("C:/Users/favero/Downloads")
-
 #install.packages("tidyverse")  # uncomment if tidyverse not installed
 #install.packages("rio")  # uncomment if rio not installed
 #install.packages("fastDummies")  # uncomment if fastDummies not installed
@@ -110,11 +31,34 @@ data <- data |>
 # create a table to check mapping of new variable to old one
 table(data$overallgrade, data$grade_factor, useNA = "ifany")
 
-# create a binary indicator for one of the values of a string variable
+data <- data |>
+  dummy_cols("overallgrade")
+
+table(data$overallgrade, data$overallgrade_A, useNA = "ifany")
+
+data <- data |>
+  select(!overallgrade_:overallgrade_F)
+
+# using the fastDummies package, we can quickly convert a factor
+# variable to a set of binary variables (with NAs handled correctly)
+data <- data |>
+  dummy_cols("grade_factor")
+
+# we can create a table to double-check what the coding looks
+# like for one of our new dummy variables
+table(data$overallgrade, data$grade_factor_A, useNA = "ifany")
+
+# we can also check how the dummy variable indicating missingness
+# is coded:
+table(data$overallgrade, data$grade_factor_NA, useNA = "ifany")
+
+# we can also create a binary indicator using mutate() and case_when()
+# this approach is more complicated but is flexible and works for
+# many recoding tasks
 data <- data |>
   mutate(grade_A = case_when(
-    overallgrade=="A" ~ 1,
-    overallgrade=="" ~ NA,
+    overallgrade == "A" ~ 1,
+    overallgrade == "" ~ NA,
     .default  = 0
     )
   )
@@ -122,20 +66,7 @@ data <- data |>
 # create a table to check mapping of new variable to old one
 table(data$overallgrade, data$grade_A, useNA = "ifany")
 
-# using the fastDummies package, we can quickly convert a factor
-# variable to a set of binary variables (with NAs handled correctly)
-data <- data |>
-  dummy_cols("grade_factor")
-
-# as in part 1, we will convert overallgrade to a factor
-# and then to a series of dummies
-data <- data |>
-  mutate(grade_factor = factor(overallgrade, exclude = ""))
-data <- data |>
-  dummy_cols("grade_factor")
-
-# one reason it can be helpful to create such dummy variables:
-# we can perform ordinary (linear) regression with a dummy
+# we can also perform ordinary (linear) regression with a dummy
 # dependent variable, which is perhaps the simplest way to
 # analyze a qualitative dependent variable using regression
 summary(lm(grade_factor_A ~ schooltype + combined_score, data = data))
@@ -147,6 +78,29 @@ summary(lm(grade_factor_B ~ schooltype + combined_score, data = data))
 summary(lm(grade_factor_C ~ schooltype + combined_score, data = data))
 summary(lm(grade_factor_D ~ schooltype + combined_score, data = data))
 summary(lm(grade_factor_F ~ schooltype + combined_score, data = data))
+
+# if you want confidence intervals for a regression, you
+# can save the result to an object, then use confint()
+lm1 <- lm(grade_factor_A ~ schooltype + combined_score, data = data)
+confint(lm1)
+
+# by default, 95% confidence intervals are shown, but you
+# can change the confidence level
+confint(lm1, level = 0.9)
+confint(lm1, level = 0.99)
+
+# if we want to run a regression with only elementary schools,
+# we can use the filter() function to create a new dataset
+# with only this subset of schools, then run our regression
+data_elementary <- data |>
+  filter(schooltype == "Elementary")
+summary(lm(grade_factor_A ~ combined_score, data = data_elementary))
+
+# we can similarly look at non-elementary schools
+data_non_elementary <- data |>
+  filter(schooltype != "Elementary")
+summary(lm(grade_factor_A ~ combined_score, data = data_non_elementary))
 ```
+
 
 :::
