@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "R Companion Guide",
     "section": "",
-    "text": "Preface\nThis is a guide to learning R. It is meant to be a companion to the 2nd edition of Statistics Minus the Math: https://minusthemath.com/2e/\nEven if you are not using that textbook, you are welcome to use this guide.\nSome similar materials are available for learning Stata at the sister site: https://learndata.net/stata-guide",
+    "text": "Preface\nThis is a guide to learning R. The structure roughly follows the 2nd edition of Statistics Minus the Math: https://favero-nate.github.io/companion-guides/stata/\nEven if you are not using that textbook, you are welcome to use this guide.\nSome similar materials are available for learning Stata at the sister site: https://learndata.net/stata-guide",
     "crumbs": [
       "Preface"
     ]
@@ -14,7 +14,7 @@
     "href": "index.html#contents",
     "title": "R Companion Guide",
     "section": "Contents",
-    "text": "Contents\nIn each main section of the guide, you’ll see a model script, followed by a list of key concepts and syntax that will be helpful to know. To understand the model script, you should try running it yourself (e.g., by copy-pasting it into RStudio).\nIn the final section of each part, I provide an exercise where you can try out what you just learned. Often, there is additional description of the dataset used in the Statistics Minus the Math text.",
+    "text": "Contents\nThe main contents of this site will consist of videos you can watch, organized into five parts that can be taught alone or alongside the first several chapters of Statistics Minus the Math. Each part has 3-4 videos.\nBelow each video, you’ll see a model script, followed by a list of key concepts and syntax that will be helpful to know.\nIn the final section of Parts 1-4, I provide an exercise where you can try out what you just learned with a different dataset.",
     "crumbs": [
       "Preface"
     ]
@@ -34,7 +34,7 @@
     "href": "index.html#accessing-r",
     "title": "R Companion Guide",
     "section": "Accessing R",
-    "text": "Accessing R\nI assume you will be executing R code using RStudio. You have two options for how to get these programs running:\n\nYou can download and install both R and RStudio on your computer. There are several installation guides available online, such as this one: https://moderndive.com/1-getting-started.html\nYou can use RStudio in a web browser through Posit Cloud, which offers free accounts with limited features: https://posit.cloud/",
+    "text": "Accessing R\nI assume you will be executing R code using Positron or RStudio. You have two options for how to get these programs running:\n\nYou can download and install both R and Positron/RStudio on your computer. There are several installation guides available online, such as this one: https://moderndive.com/1-getting-started.html\nYou can use Positron/RStudio in a web browser through Posit Cloud, which offers free accounts with limited features: https://posit.cloud/",
     "crumbs": [
       "Preface"
     ]
@@ -308,7 +308,7 @@
     "href": "03-associations.html#model-script",
     "title": "Associations (for Quantitative Variables)",
     "section": "",
-    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"rio\")  # uncomment if rio not installed\nlibrary(tidyverse)\nlibrary(rio)\n\n# load in and prepare the data\nnycschools &lt;- import(\"https://learndata.net/nycschools.dta\")\nnycschools &lt;- nycschools |&gt; mutate(thgrmathela = parse_number(thgrmathela))\nnycschools &lt;- nycschools |&gt; rename(combined_score = thgrmathela)\n\n# calculate a correlation coefficient\ncor(nycschools$overallscore, nycschools$combined_score, use = \"complete\")\n\n# note that without the proper \"use\" option, we get\n# \"NA\" as our result due to missing observations\ncor(nycschools$overallscore, nycschools$combined_score)\n\n# three different ways to make the same plot\nplot(nycschools$combined_score, nycschools$overallscore)\nplot(nycschools$overallscore ~ nycschools$combined_score)\nplot(overallscore ~ combined_score, data = nycschools)\n\n# add a regression line to the current plot\nabline(lm(overallscore ~ combined_score, data = nycschools))",
+    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"rio\")  # uncomment if rio not installed\n#install.packages(\"binsreg\")  # uncomment if binsreg not installed\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(binsreg)\n\n# load in and prepare the data\nnycschools &lt;- import(\"https://learndata.net/nycschools.dta\")\nnycschools &lt;- nycschools |&gt; mutate(thgrmathela = parse_number(thgrmathela))\nnycschools &lt;- nycschools |&gt; rename(combined_score = thgrmathela)\n\n# calculate a correlation coefficient\ncor(nycschools$overallscore, nycschools$combined_score, use = \"complete\")\n\n# note that without the proper \"use\" option, we get\n# \"NA\" as our result due to missing observations\ncor(nycschools$overallscore, nycschools$combined_score)\n\n# three different ways to make the same plot\nplot(nycschools$combined_score, nycschools$overallscore)\nplot(nycschools$overallscore ~ nycschools$combined_score)\nplot(overallscore ~ combined_score, data = nycschools)\n\n# add a regression line to the current plot\nabline(lm(overallscore ~ combined_score, data = nycschools))\n\n# create a binned scatter plot\nbinsreg(nycschools$combined_score, nycschools$overallscore)",
     "crumbs": [
       "Part 3: Transformations, Associations",
       "Associations (for Quantitative Variables)"
@@ -341,7 +341,7 @@
     "href": "03-regression.html#model-script",
     "title": "Regression",
     "section": "",
-    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"rio\")  # uncomment if rio not installed\nlibrary(tidyverse)\nlibrary(rio)\n\n# load in and prepare the data\ndata &lt;- import(\"https://learndata.net/nycschools.dta\")\ndata &lt;- data |&gt; mutate(iep = parse_number(iep))\ndata &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\ndata &lt;- data |&gt; mutate(ell = parse_number(ell))\ndata &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\ndata &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# run a regression, then show a summary of its results\nregression1 &lt;- lm(overallscore ~ combined_score, data = data)\nsummary(regression1)\n\n# you can also combine the above into a single line\nsummary(lm(overallscore ~ combined_score, data = data))\n\n# another regression\nregression2 &lt;- lm(overallscore ~ combined_score + ell + iep + blackhispanic + economicneedindex, data = data)\nsummary(regression2)",
+    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"rio\")  # uncomment if rio not installed\nlibrary(tidyverse)\nlibrary(rio)\n\n# load in and prepare the data (using code seen previously)\n  data &lt;- import(\"https://learndata.net/nycschools.dta\")\n  data &lt;- data |&gt; mutate(iep = parse_number(iep))\n  data &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\n  data &lt;- data |&gt; mutate(ell = parse_number(ell))\n  data &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n  data &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# run a regression, then show a summary of its results\nregression1 &lt;- lm(overallscore ~ combined_score, data = data)\nsummary(regression1)\n\n# you can also combine the above into a single line\nsummary(lm(overallscore ~ combined_score, data = data))\n\n# another regression\nregression2 &lt;- lm(overallscore ~ combined_score + ell + iep + blackhispanic + economicneedindex, data = data)\nsummary(regression2)\n\n# if you prefer R to avoid scientific notation (when practical),\n# you can change the scipen option in R to a higher value\n# (0 is the default; here we set it to 10)\noptions(scipen = 10)\n\n# now, see how scientific notation is barely used in the results\nsummary(regression2)",
     "crumbs": [
       "Part 3: Transformations, Associations",
       "Regression"
@@ -352,7 +352,7 @@
     "href": "03-regression.html#key-conceptssyntax",
     "title": "Regression",
     "section": "Key concepts/syntax:",
-    "text": "Key concepts/syntax:\n\nlm(): run a linear (OLS) regression\nregression1 &lt;- lm(overallscore ~ combined_score, data = data)\nsummary(): show a summary, such as a summary of regression results\nsummary(regression1)",
+    "text": "Key concepts/syntax:\n\nlm(): run a linear (OLS) regression\nregression1 &lt;- lm(overallscore ~ combined_score, data = data)\nsummary(): show a summary, such as a summary of regression results\nsummary(regression1)\noptions(): change general options in R, such as scientific notation display settings\noptions(scipen = 10)",
     "crumbs": [
       "Part 3: Transformations, Associations",
       "Regression"
@@ -381,28 +381,6 @@
     ]
   },
   {
-    "objectID": "04-qual-quant-comparisons.html",
-    "href": "04-qual-quant-comparisons.html",
-    "title": "Qualitative-Quantitative Relationships",
-    "section": "",
-    "text": "Model script",
-    "crumbs": [
-      "Part 4: Qualitative Variables",
-      "Qualitative-Quantitative Relationships"
-    ]
-  },
-  {
-    "objectID": "04-qual-quant-comparisons.html#model-script",
-    "href": "04-qual-quant-comparisons.html#model-script",
-    "title": "Qualitative-Quantitative Relationships",
-    "section": "",
-    "text": "setwd(\"C:/Users/favero/Downloads\")\n\n#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"rio\")  # uncomment if rio not installed\n#install.packages(\"psych\")  # uncomment if psych not installed\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(psych)\n\ndata &lt;- import(\"https://learndata.net/nycschools.dta\")\n\n# basic data processing needed to use this dataset, copied from Ch. 3:\n  # convert quantitative variables currently\n  # stored as characters to numbers\n  data &lt;- data |&gt; mutate(iep = parse_number(iep))\n  data &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\n  data &lt;- data |&gt; mutate(ell = parse_number(ell))\n  data &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n  \n  # rename thgrmathela to something more descriptive\n  data &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# create a table with summary statistics for combined_score by schooltype  \ndescribeBy(data$combined_score, group=data$schooltype)\n\n# an alternative way to create a similar table using tidyverse commands\ndata |&gt;\n  group_by(schooltype) |&gt; \n  summarize(\n    n = sum(!is.na(combined_score)),\n    mean = mean(combined_score, na.rm = TRUE),\n    median = median(combined_score, na.rm = TRUE),\n    sd = sd(combined_score, na.rm = TRUE)\n  )\n\n# create a set of box plots showing this same relationship\nboxplot(combined_score ~ schooltype, data = data)\n\n# let's use a different qualitative variable (overallgrade)\nboxplot(combined_score ~ overallgrade, data = data)\n\n# now recreate the prior boxplot filtering out blanks\n# (missing values) before creating the plot\ndata_nonmissing_grade &lt;- data |&gt; filter(overallgrade != \"\")\nboxplot(combined_score ~ overallgrade, data = data_nonmissing_grade)",
-    "crumbs": [
-      "Part 4: Qualitative Variables",
-      "Qualitative-Quantitative Relationships"
-    ]
-  },
-  {
     "objectID": "04-qual-qual-comparisons.html",
     "href": "04-qual-qual-comparisons.html",
     "title": "Qualitative-Qualitative Relationships",
@@ -425,6 +403,28 @@
     ]
   },
   {
+    "objectID": "04-qual-quant-comparisons.html",
+    "href": "04-qual-quant-comparisons.html",
+    "title": "Qualitative-Quantitative Relationships",
+    "section": "",
+    "text": "Model script",
+    "crumbs": [
+      "Part 4: Qualitative Variables",
+      "Qualitative-Quantitative Relationships"
+    ]
+  },
+  {
+    "objectID": "04-qual-quant-comparisons.html#model-script",
+    "href": "04-qual-quant-comparisons.html#model-script",
+    "title": "Qualitative-Quantitative Relationships",
+    "section": "",
+    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"rio\")  # uncomment if rio not installed\n#install.packages(\"psych\")  # uncomment if psych not installed\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(psych)\n\ndata &lt;- import(\"https://learndata.net/nycschools.dta\")\n\n# basic data processing needed to use this dataset, copied from Ch. 3:\n  # convert quantitative variables currently\n  # stored as characters to numbers\n  data &lt;- data |&gt; mutate(iep = parse_number(iep))\n  data &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\n  data &lt;- data |&gt; mutate(ell = parse_number(ell))\n  data &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n  \n  # rename thgrmathela to something more descriptive\n  data &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# create a table with summary statistics for combined_score by schooltype  \ndescribeBy(data$combined_score, group=data$schooltype)\n\n# an alternative way to create a similar table using tidyverse commands\ndata |&gt;\n  group_by(schooltype) |&gt; \n  summarize(\n    n = sum(!is.na(combined_score)),\n    mean = mean(combined_score, na.rm = TRUE),\n    median = median(combined_score, na.rm = TRUE),\n    sd = sd(combined_score, na.rm = TRUE)\n  )\n\n# create a set of box plots showing this same relationship\nboxplot(combined_score ~ schooltype, data = data)\n\n# let's use a different qualitative variable (overallgrade)\nboxplot(combined_score ~ overallgrade, data = data)\n\n# now recreate the prior boxplot filtering out blanks\n# (missing values) before creating the plot\ndata_nonmissing_grade &lt;- data |&gt; filter(overallgrade != \"\")\nboxplot(combined_score ~ overallgrade, data = data_nonmissing_grade)",
+    "crumbs": [
+      "Part 4: Qualitative Variables",
+      "Qualitative-Quantitative Relationships"
+    ]
+  },
+  {
     "objectID": "04-regression.html",
     "href": "04-regression.html",
     "title": "Regression with Qualitative Variables",
@@ -440,7 +440,7 @@
     "href": "04-regression.html#model-script",
     "title": "Regression with Qualitative Variables",
     "section": "",
-    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"rio\")  # uncomment if rio not installed\nlibrary(tidyverse)\nlibrary(rio)\n\ndata &lt;- import(\"https://learndata.net/nycschools.dta\")\n\n# basic data processing needed to use this dataset, copied from Ch. 3:\n  # convert quantitative variables currently\n  # stored as characters to numbers\n  data &lt;- data |&gt; mutate(iep = parse_number(iep))\n  data &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\n  data &lt;- data |&gt; mutate(ell = parse_number(ell))\n  data &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n  \n  # rename thgrmathela to something more descriptive\n  data &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# for string variables, they can be directly included\n# in a regression as a qualitative independent variable\nsummary(lm(combined_score ~ schooltype, data = data))\n\n# if a qualitative variable is stored numerically, it\n# will be (incorrectly) treated as a quantitative variable\n# by default:\nsummary(lm(combined_score ~ district, data = data))\n\n# we can enclose the variable name with factor() so\n# R will know to treat the variable as qualitative\nsummary(lm(combined_score ~ factor(district), data = data))",
+    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"rio\")  # uncomment if rio not installed\n#install.packages(\"fastDummies\")  # uncomment if fastDummies not installed\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(fastDummies)\n\ndata &lt;- import(\"https://learndata.net/nycschools.dta\")\n\n# basic data processing needed to use this dataset, copied from Ch. 3:\n  # convert quantitative variables currently\n  # stored as characters to numbers\n  data &lt;- data |&gt; mutate(iep = parse_number(iep))\n  data &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\n  data &lt;- data |&gt; mutate(ell = parse_number(ell))\n  data &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n  \n  # rename thgrmathela to something more descriptive\n  data &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# for a string variable, it can be directly included\n# in a regression as a categorical independent variable\nsummary(lm(combined_score ~ schooltype, data = data))\n\n# if I want more control over how the categorical \n# variable is handled in the regression, I can use\n# the fastDummies package to create a set of dummy\n# variables from my categorical variable, and then\n# I can enter these variables directly into the \n# regression (note: the variable schooltype_K-8 has\n# a hyphen in it, which requires referring to it as \n# `schooltype_K-8`)\ndata &lt;- data |&gt; dummy_cols(\"schooltype\")\nsummary(lm(combined_score ~ schooltype_Elementary + `schooltype_K-8` + schooltype_Middle, data = data))\n\n# I can see how my results look different if I \n# change the reference category by leaving out one\n# category\nsummary(lm(combined_score ~ schooltype_Elementary + schooltype_Middle, data = data))\n\n# if a categorical variable is stored numerically, it\n# will be (incorrectly) treated as a quantitative variable\n# by default in a regression:\nsummary(lm(combined_score ~ district, data = data))\n\n# we can enclose the variable name with factor() so\n# R will know to treat the variable as categorical\nsummary(lm(combined_score ~ factor(district), data = data))",
     "crumbs": [
       "Part 4: Qualitative Variables",
       "Regression with Qualitative Variables"
@@ -471,23 +471,23 @@
   {
     "objectID": "05-data-management.html",
     "href": "05-data-management.html",
-    "title": "Qualitative-Quantitative Relationships",
+    "title": "Data Management, Qualitative Dependent Variables",
     "section": "",
     "text": "Model script",
     "crumbs": [
       "Part 5: Data Management",
-      "Qualitative-Quantitative Relationships"
+      "Data Management, Qualitative Dependent Variables"
     ]
   },
   {
     "objectID": "05-data-management.html#model-script",
     "href": "05-data-management.html#model-script",
-    "title": "Qualitative-Quantitative Relationships",
+    "title": "Data Management, Qualitative Dependent Variables",
     "section": "",
-    "text": "setwd(\"C:/Users/favero/Downloads\")\n\n#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"rio\")  # uncomment if rio not installed\n#install.packages(\"fastDummies\")  # uncomment if fastDummies not installed\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(fastDummies)\n\ndata &lt;- import(\"https://learndata.net/nycschools.dta\")\n\n# basic data processing needed to use this dataset, copied from Ch. 3:\n  # convert quantitative variables currently\n  # stored as characters to numbers\n  data &lt;- data |&gt; mutate(iep = parse_number(iep))\n  data &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\n  data &lt;- data |&gt; mutate(ell = parse_number(ell))\n  data &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n  \n  # rename thgrmathela to something more descriptive\n  data &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# create a factor variable from a string variable\ndata &lt;- data |&gt;\n  mutate(grade_factor = factor(overallgrade, exclude = \"\"))\n\n# create a table to check mapping of new variable to old one\ntable(data$overallgrade, data$grade_factor, useNA = \"ifany\")\n\n# create a binary indicator for one of the values of a string variable\ndata &lt;- data |&gt;\n  mutate(grade_A = case_when(\n    overallgrade==\"A\" ~ 1,\n    overallgrade==\"\" ~ NA,\n    .default  = 0\n    )\n  )\n\n# create a table to check mapping of new variable to old one\ntable(data$overallgrade, data$grade_A, useNA = \"ifany\")\n\n# using the fastDummies package, we can quickly convert a factor\n# variable to a set of binary variables (with NAs handled correctly)\ndata &lt;- data |&gt;\n  dummy_cols(\"grade_factor\")\n\n# as in part 1, we will convert overallgrade to a factor\n# and then to a series of dummies\ndata &lt;- data |&gt;\n  mutate(grade_factor = factor(overallgrade, exclude = \"\"))\ndata &lt;- data |&gt;\n  dummy_cols(\"grade_factor\")\n\n# one reason it can be helpful to create such dummy variables:\n# we can perform ordinary (linear) regression with a dummy\n# dependent variable, which is perhaps the simplest way to\n# analyze a qualitative dependent variable using regression\nsummary(lm(grade_factor_A ~ schooltype + combined_score, data = data))\n\n# the regression above showed us predictions for a school\n# receiving an overall grade of A; if we want predictions\n# for each possible grade, we can run a series of regressions\nsummary(lm(grade_factor_B ~ schooltype + combined_score, data = data))\nsummary(lm(grade_factor_C ~ schooltype + combined_score, data = data))\nsummary(lm(grade_factor_D ~ schooltype + combined_score, data = data))\nsummary(lm(grade_factor_F ~ schooltype + combined_score, data = data))",
+    "text": "#install.packages(\"tidyverse\")  # uncomment if tidyverse not installed\n#install.packages(\"rio\")  # uncomment if rio not installed\n#install.packages(\"fastDummies\")  # uncomment if fastDummies not installed\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(fastDummies)\n\ndata &lt;- import(\"https://learndata.net/nycschools.dta\")\n\n# basic data processing needed to use this dataset, copied from Ch. 3:\n  # convert quantitative variables currently\n  # stored as characters to numbers\n  data &lt;- data |&gt; mutate(iep = parse_number(iep))\n  data &lt;- data |&gt; mutate(blackhispanic = parse_number(blackhispanic))\n  data &lt;- data |&gt; mutate(ell = parse_number(ell))\n  data &lt;- data |&gt; mutate(thgrmathela = parse_number(thgrmathela))\n  \n  # rename thgrmathela to something more descriptive\n  data &lt;- data |&gt; rename(combined_score = thgrmathela)\n\n# create a factor variable from a string variable\ndata &lt;- data |&gt;\n  mutate(grade_factor = factor(overallgrade, exclude = \"\"))\n\n# create a table to check mapping of new variable to old one\ntable(data$overallgrade, data$grade_factor, useNA = \"ifany\")\n\ndata &lt;- data |&gt;\n  dummy_cols(\"overallgrade\")\n\ntable(data$overallgrade, data$overallgrade_A, useNA = \"ifany\")\n\ndata &lt;- data |&gt;\n  select(!overallgrade_:overallgrade_F)\n\n# using the fastDummies package, we can quickly convert a factor\n# variable to a set of binary variables (with NAs handled correctly)\ndata &lt;- data |&gt;\n  dummy_cols(\"grade_factor\")\n\n# we can create a table to double-check what the coding looks\n# like for one of our new dummy variables\ntable(data$overallgrade, data$grade_factor_A, useNA = \"ifany\")\n\n# we can also check how the dummy variable indicating missingness\n# is coded:\ntable(data$overallgrade, data$grade_factor_NA, useNA = \"ifany\")\n\n# we can also create a binary indicator using mutate() and case_when()\n# this approach is more complicated but is flexible and works for\n# many recoding tasks\ndata &lt;- data |&gt;\n  mutate(grade_A = case_when(\n    overallgrade == \"A\" ~ 1,\n    overallgrade == \"\" ~ NA,\n    .default  = 0\n    )\n  )\n\n# create a table to check mapping of new variable to old one\ntable(data$overallgrade, data$grade_A, useNA = \"ifany\")\n\n# we can also perform ordinary (linear) regression with a dummy\n# dependent variable, which is perhaps the simplest way to\n# analyze a qualitative dependent variable using regression\nsummary(lm(grade_factor_A ~ schooltype + combined_score, data = data))\n\n# the regression above showed us predictions for a school\n# receiving an overall grade of A; if we want predictions\n# for each possible grade, we can run a series of regressions\nsummary(lm(grade_factor_B ~ schooltype + combined_score, data = data))\nsummary(lm(grade_factor_C ~ schooltype + combined_score, data = data))\nsummary(lm(grade_factor_D ~ schooltype + combined_score, data = data))\nsummary(lm(grade_factor_F ~ schooltype + combined_score, data = data))\n\n# if you want confidence intervals for a regression, you\n# can save the result to an object, then use confint()\nlm1 &lt;- lm(grade_factor_A ~ schooltype + combined_score, data = data)\nconfint(lm1)\n\n# by default, 95% confidence intervals are shown, but you\n# can change the confidence level\nconfint(lm1, level = 0.9)\nconfint(lm1, level = 0.99)\n\n# if we want to run a regression with only elementary schools,\n# we can use the filter() function to create a new dataset\n# with only this subset of schools, then run our regression\ndata_elementary &lt;- data |&gt;\n  filter(schooltype == \"Elementary\")\nsummary(lm(grade_factor_A ~ combined_score, data = data_elementary))\n\n# we can similarly look at non-elementary schools\ndata_non_elementary &lt;- data |&gt;\n  filter(schooltype != \"Elementary\")\nsummary(lm(grade_factor_A ~ combined_score, data = data_non_elementary))",
     "crumbs": [
       "Part 5: Data Management",
-      "Qualitative-Quantitative Relationships"
+      "Data Management, Qualitative Dependent Variables"
     ]
   }
 ]

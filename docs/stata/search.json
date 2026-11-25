@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Stata Companion Guide",
     "section": "",
-    "text": "Preface\nThis is a guide to learning Stata. It is meant to be a companion to the 2nd edition of Statistics Minus the Math: https://minusthemath.com/2e/\nEven if you are not using that textbook, you are welcome to use this guide.\nSome similar materials are available for learning R at the sister site: https://learndata.net/r-guide",
+    "text": "Preface\nThis is a guide to learning Stata. The structure roughly follows the 2nd edition of Statistics Minus the Math: https://favero-nate.github.io/companion-guides/stata/\nEven if you are not using that textbook, you are welcome to use this guide.\nSome similar materials are available for learning R at the sister site: https://favero-nate.github.io/companion-guides/r/",
     "crumbs": [
       "Preface"
     ]
@@ -14,7 +14,7 @@
     "href": "index.html#contents",
     "title": "Stata Companion Guide",
     "section": "Contents",
-    "text": "Contents\nThe main contents of this site will consist of videos you can watch, organized into four parts that correspond to the first four chapters of Statistics Minus the Math. Each part has 3-4 videos.\nBelow each video, there is a list of key concepts/commands from the video, along with examples of the commands being used.\nIn the final section of each part, I provide an exercise where you can try out what you just learned. Often, there is additional description of the dataset used in the Statistics Minus the Math text.",
+    "text": "Contents\nThe main contents of this site will consist of videos you can watch, organized into four parts that can be taught alone or alongside the first several chapters of Statistics Minus the Math. Each part has 3-4 videos.\nBelow each video, there is a list of key concepts/commands from the video, along with examples of the commands being used.\nIn the final section of Parts 1-4, I provide an exercise where you can try out what you just learned with a different dataset.",
     "crumbs": [
       "Preface"
     ]

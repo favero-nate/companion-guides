@@ -12,3 +12,7 @@ book:
       - 04-lab.qmd
     - beyond-this-guide.qmd
     - instructor-notes.qmd
+
+format:
+  pdf:
+    documentclass: scrreprt

@@ -434,14 +434,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-qual-quant-comparisons.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Qualitative-Quantitative Relationships</span></a>
+  <a href="./04-qual-qual-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Qualitative-Qualitative Relationships</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-qual-qual-comparisons.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Qualitative-Qualitative Relationships</span></a>
+  <a href="./04-qual-quant-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Qualitative-Quantitative Relationships</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -470,7 +470,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-data-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Qualitative-Quantitative Relationships</span></a>
+ <span class="menu-text">Data Management, Qualitative Dependent Variables</span></a>
   </div>
 </li>
       </ul>
@@ -517,28 +517,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="model-script">Model script</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidyverse")  # uncomment if tidyverse not installed</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("rio")  # uncomment if rio not installed</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># load in and prepare the data</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>nycschools <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"https://learndata.net/nycschools.dta"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>nycschools <span class="ot">&lt;-</span> nycschools <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">thgrmathela =</span> <span class="fu">parse_number</span>(thgrmathela))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>nycschools <span class="ot">&lt;-</span> nycschools <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">combined_score =</span> thgrmathela)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate a correlation coefficient</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(nycschools<span class="sc">$</span>overallscore, nycschools<span class="sc">$</span>combined_score, <span class="at">use =</span> <span class="st">"complete"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># note that without the proper "use" option, we get</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># "NA" as our result due to missing observations</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(nycschools<span class="sc">$</span>overallscore, nycschools<span class="sc">$</span>combined_score)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># three different ways to make the same plot</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nycschools<span class="sc">$</span>combined_score, nycschools<span class="sc">$</span>overallscore)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nycschools<span class="sc">$</span>overallscore <span class="sc">~</span> nycschools<span class="sc">$</span>combined_score)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(overallscore <span class="sc">~</span> combined_score, <span class="at">data =</span> nycschools)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># add a regression line to the current plot</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(overallscore <span class="sc">~</span> combined_score, <span class="at">data =</span> nycschools))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("binsreg")  # uncomment if binsreg not installed</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(binsreg)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load in and prepare the data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>nycschools <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"https://learndata.net/nycschools.dta"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>nycschools <span class="ot">&lt;-</span> nycschools <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">thgrmathela =</span> <span class="fu">parse_number</span>(thgrmathela))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>nycschools <span class="ot">&lt;-</span> nycschools <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">combined_score =</span> thgrmathela)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate a correlation coefficient</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(nycschools<span class="sc">$</span>overallscore, nycschools<span class="sc">$</span>combined_score, <span class="at">use =</span> <span class="st">"complete"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># note that without the proper "use" option, we get</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># "NA" as our result due to missing observations</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(nycschools<span class="sc">$</span>overallscore, nycschools<span class="sc">$</span>combined_score)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># three different ways to make the same plot</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nycschools<span class="sc">$</span>combined_score, nycschools<span class="sc">$</span>overallscore)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nycschools<span class="sc">$</span>overallscore <span class="sc">~</span> nycschools<span class="sc">$</span>combined_score)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(overallscore <span class="sc">~</span> combined_score, <span class="at">data =</span> nycschools)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># add a regression line to the current plot</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(overallscore <span class="sc">~</span> combined_score, <span class="at">data =</span> nycschools))</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># create a binned scatter plot</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">binsreg</span>(nycschools<span class="sc">$</span>combined_score, nycschools<span class="sc">$</span>overallscore)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="key-conceptssyntax" class="level2">
 <h2 class="anchored" data-anchor-id="key-conceptssyntax">Key concepts/syntax:</h2>
