@@ -43,6 +43,10 @@
 :::
 
 ::: {.content-visible when-profile="r"}
+This lesson covers relationships between two categorical (a.k.a., qualitative) variables.
+
+{{< video https://youtu.be/AfEqU-5EWhE >}}
+
 ## Model script
 
 ``` r

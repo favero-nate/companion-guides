@@ -16,3 +16,5 @@ book:
 format:
   pdf:
     documentclass: scrreprt
+    toc-depth: 1
+    

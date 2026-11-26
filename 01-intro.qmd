@@ -38,6 +38,8 @@ Dataset source: <https://onlinestatbook.com/2/case_studies/binge.html>
 :::
 
 ::: {.content-visible when-profile="r"}
+{{< video https://youtu.be/rG9bVQnnefs >}}
+
 ## Model script
 
 ``` r

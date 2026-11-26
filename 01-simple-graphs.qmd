@@ -55,6 +55,8 @@
 :::
 
 ::: {.content-visible when-profile="r"}
+{{< video https://youtu.be/Yb0iaKy26Oo >}}
+
 ## Model script
 
 ``` r

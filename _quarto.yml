@@ -7,7 +7,7 @@ project:
 book:
   title: "Software Companion Guides"
   author: "Nathan Favero"
-  date: "11/21/2026"
+  date: "11/25/2026"
   chapters:
     - index.qmd
     - part: "Part 1: Getting Started"

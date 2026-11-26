@@ -1,8 +1,9 @@
 # Qualitative-Quantitative Relationships {.unnumbered}
 
 ::: {.content-visible when-profile="stata"}
+Note: Part 4 of this Guide is longer than prior parts, so you may want to split it into two sessions: this page can serve as session A, and the remaining pages can serve as session B.
 
-Part I of this chapter is split up into two videos:
+There are two videos that go with this page:
 
 {{< video https://youtu.be/WdQ47WnZNDg >}}
 
@@ -78,6 +79,10 @@ Part I of this chapter is split up into two videos:
 :::
 
 ::: {.content-visible when-profile="r"}
+This lesson covers relationships between categorical (a.k.a., qualitative) variables and quantitative variables.
+
+{{< video https://youtu.be/ZbbfcOatoiU >}}
+
 ## Model script
 
 ``` r
@@ -125,5 +130,4 @@ boxplot(combined_score ~ overallgrade, data = data)
 data_nonmissing_grade <- data |> filter(overallgrade != "")
 boxplot(combined_score ~ overallgrade, data = data_nonmissing_grade)
 ```
-
 :::

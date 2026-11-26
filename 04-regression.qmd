@@ -25,6 +25,10 @@
 :::
 
 ::: {.content-visible when-profile="r"}
+This lesson covers regression with a categorical (a.k.a., qualitative) independent variable.
+
+{{< video https://youtu.be/BG5gtvEzzjQ >}}
+
 ## Model script
 
 ``` r

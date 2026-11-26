@@ -1,6 +1,13 @@
 # Data Management, Qualitative Dependent Variables {.unnumbered}
 
 ::: {.content-visible when-profile="r"}
+Among other topics, this lesson covers regression with a categorical (a.k.a., qualitative) dependent variable.
+
+{{< video https://youtu.be/f_XppNnRu7U >}}
+
+{{< video https://youtu.be/TdrgXQ0_rcY >}}
+
+{{< video https://youtu.be/r68PtY3v5ZY >}}
 ## Model script
 
 ``` r

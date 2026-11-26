@@ -39,6 +39,8 @@ You can download the zip file referenced in this lesson here: <https://learndata
 :::
 
 ::: {.content-visible when-profile="r"}
+{{< video https://youtu.be/921aUeSBG48 >}}
+
 ## Model script
 
 ``` r

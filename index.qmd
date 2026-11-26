@@ -1,15 +1,19 @@
 # Preface {.unnumbered}
 
-This is a guide to learning [Stata]{.content-visible when-profile="stata"}[R]{.content-visible when-profile="r"}. The structure roughly follows the 2nd edition of *Statistics Minus the Math*: <https://favero-nate.github.io/companion-guides/stata/>
+This is a guide to learning [Stata]{.content-visible when-profile="stata"}[R]{.content-visible when-profile="r"}. The structure roughly follows the 2nd edition of *Statistics Minus the Math*: <https://minusthemath.com/2e/>
 
 Even if you are not using that textbook, you are welcome to use this guide.
 
 ::: {.content-visible when-profile="stata"}
 Some similar materials are available for learning R at the sister site: <https://favero-nate.github.io/companion-guides/r/>
+
+If you wish to download a PDF of the text from this guide, one is available here: <https://favero-nate.github.io/companion-guides/stata/Stata-Companion-Guide.pdf>
 :::
 
 ::: {.content-visible when-profile="r"}
-Some similar materials are available for learning Stata at the sister site: <https://learndata.net/stata-guide>
+Some similar materials are available for learning Stata at the sister site: <https://favero-nate.github.io/companion-guides/stata/>
+
+If you wish to download a PDF of the text from this guide, one is available here: <https://favero-nate.github.io/companion-guides/r/R-Companion-Guide.pdf>
 :::
 
 ## Contents
@@ -20,7 +24,7 @@ Below each video, there is a list of key concepts/commands from the video, along
 :::
 
 ::: {.content-visible when-profile="r"}
-Below each video, you'll see a model script, followed by a list of key concepts and syntax that will be helpful to know.
+Below each video, you'll see a model script, followed by a list of key concepts and syntax that will be helpful to know. However, note that Parts 4-5 are still being created and are currently incomplete.
 :::
 
 In the final section of Parts 1-4, I provide an exercise where you can try out what you just learned with a different dataset.
