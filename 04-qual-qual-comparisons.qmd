@@ -82,13 +82,16 @@ CrossTable(data$overallgrade, data$schooltype)
 
 # by default, many proportions are shown below each frequency
 # let's turn off all proportions except prop.r (row proportions)
-CrossTable(data$overallgrade, data$schooltype, prop.c = FALSE, prop.t = FALSE, prop.chisq = FALSE)
+CrossTable(data$overallgrade, data$schooltype, prop.c = FALSE,
+  prop.t = FALSE, prop.chisq = FALSE)
 
 # an alternative if we prefer seeing column proportions:
-CrossTable(data$overallgrade, data$schooltype, prop.r = FALSE, prop.t = FALSE, prop.chisq = FALSE)
+CrossTable(data$overallgrade, data$schooltype, prop.r = FALSE,
+  prop.t = FALSE, prop.chisq = FALSE)
 
 # to check for statistical significance, we can set chisq to TRUE:
-CrossTable(data$overallgrade, data$schooltype, prop.r = FALSE, prop.t = FALSE, prop.chisq = FALSE, chisq = TRUE)
+CrossTable(data$overallgrade, data$schooltype, prop.r = FALSE,
+  prop.t = FALSE, prop.chisq = FALSE, chisq = TRUE)
 
 # make a simple bar chart with the ggplot2 package (part of core tidyverse)
 data |>

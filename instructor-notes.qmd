@@ -1,27 +1,27 @@
 # Instructor Notes {.unnumbered}
 
-::: {.content-visible when-profile="stata"}
 ## Sample course outline
 
 I've constructed this outline to span 10 weeks, since a typical 15 week course on introductory statistics may reserve some weeks for exams or other content.
 
-### Week 1: Getting Started (*Stata Companion Guide* Part 1)
+### Week 1: Getting Started ([*Stata*]{.content-visible when-profile="stata"}[*R*]{.content-visible when-profile="r"} *Companion Guide* Part 1)
 
-Depending on what kind of setup you have for running Stata (e.g., in a virtual desktop environment), students may struggle to figure out how to transfer graphs from Stata into Word. You may want to walk students through how to do this. You might also want to show students what it means to have a clean do file that will execute in full.
+Depending on what kind of setup you have for running your software (e.g., in a virtual desktop environment), students may struggle to figure out how to transfer graphs into Word or whatever format you use for student submissions. You may want to walk students through how to do this. You might also want to show students what it means to have a clean script file that will execute in full.
 
-### Week 2: Description, File Types (*Stata Companion Guide* Part 2)
+### Week 2: Description, File Types ([*Stata*]{.content-visible when-profile="stata"}[*R*]{.content-visible when-profile="r"} *Companion Guide* Part 2)
 
 Especially relevant to this chapter, many students struggle with basic file management. You might want to spend some time showing them what it looks like to have a good folder structure for data work (e.g., using the cloud file storage system provided by your school).
 
-### Week 3: Transformations, Associations (*Stata Companion Guide* Part 3)
+### Week 3: Transformations, Associations ([*Stata*]{.content-visible when-profile="stata"}[*R*]{.content-visible when-profile="r"} *Companion Guide* Part 3)
 
-I designed the "Put it into Practice" assignment with the intention that students would get some practice with executing transformations and regressions in Stata. The actual transformations and regression they perform may not be very useful/informative. Still, this excercise can form the basis of a constructive follow-up discussion in class (e.g., comparing regression results from standardized vs. unstandardized variables).
+I designed the "Put it into Practice" assignment with the intention that students would get some practice with executing transformations and regressions in software The actual transformations and regression they perform may not be very useful/informative. Still, this exercise can set the scene for a follow-up discussion in class (e.g., comparing regression results from standardized vs. unstandardized variables).
 
-### Week 4: Recoding Variables and Comparing Means/Medians (*Stata Companion Guide* - first section of Part 4)
+::: {.content-visible when-profile="stata"}
+### Week 4: Recoding Variables and Comparing Means/Medians (*Stata Companion Guide* - first page of Part 4)
 
 Part 4 of the guide has more material (and is more difficult) than the other parts, so I recommend splitting it across two weeks. In this first week, you can cover just the section titled "Qualitative-Quantitative Relationships."
 
-### Week 5: Crosstabs/Graphs and Regression with Qualitative Variables (Stata Companion Guide - rest of Part 4)
+### Week 5: Crosstabs/Graphs and Regression with Qualitative Variables (*Stata Companion Guide* - rest of Part 4)
 
 If you are using the *Statistics Minus the Math* textbook, note that this week's "Put it into Practice" dataset does not currently match Ch. 4 of the textbook, but I plan to update the textbook in the future so that they match.
 
@@ -51,4 +51,33 @@ Note: To align with Ch. 6 of *Statistics Minus the Math*, I would also show stud
 :::
 
 ::: {.content-visible when-profile="r"}
+### Week 4: Working with Qualitative Variables (*R Companion Guide* Part 4)
+
+Part 4 starts to introduce some ideas that will require a lot more study to really master. The first section introduces ggplot2, but the grammar of graphics is not really explained because I consider it too complicated for a lesson at this stage. So you may want to emphasize to students that they don't need to follow the reasoning for all of this code to still make use of it. You might take this opportunity to discuss more generally the process of trying to adapt code chunks you find (e.g., through Google) to your particular project/situation.
+
+In the second section of Part 4, I introduce creating summary tables with the tidyverse, but I also don't really expect students to be able to generate code like this themselves yet.
+
+### Week 5: Data Management and Qualitative Dependent Variables (*R Companion Guide* Part 5)
+
+The main theme of Part 5 is data management, but that is such a big topic that this coverage is in no way comprehensive. It does fill in several more functions/examples for data manipulation that students may need for simple data projects. Currently, I have not split this up across three pages, but there are three distinct videos that effectively separate the Part 5 model script content into three sections.
+
+### Week 6: More Data Visualization (Grammar of Graphics)
+
+The ordering of topics does not follow any particular logic for the five final weeks, so this can be moved around. One potential topic is a more systematic coverage of creating graphs with ggplot2: <https://r4ds.hadley.nz/data-visualize.html>
+
+### Week 7: Regression output and robust standard errors
+
+<https://evalf21.classes.andrewheiss.com/example/standard-errors/> (if that link ever dies, use the [Internet Archive version](https://web.archive.org/web/20261024002246/https://evalf21.classes.andrewheiss.com/example/standard-errors/))
+
+### Week 8: Making Nice Tables
+
+There are several packages to choose from, but one option is stargazer. Many introductions are available, but this one from Princeton's library looks promising (from a quick glance): <https://libguides.princeton.edu/R-stargazer>
+
+### Week 9: *R4DS* as a Reference Tool
+
+You can assign sections from [*R4DS*](https://r4ds.hadley.nz/) that are particularly relevant to whatever you are emphasizing in your class, while more generally discussing how to use the book as a reference tool (e.g., typing a function into the search bar).
+
+### Week 10: Plotting Predicted Values from Regression
+
+<https://stats.oarc.ucla.edu/r/seminars/interactions-r/>
 :::

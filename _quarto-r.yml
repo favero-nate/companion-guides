@@ -13,6 +13,7 @@ book:
     - part: "Part 5: Data Management"
       chapters:
       - 05-data-management.qmd
+    - instructor-notes.qmd
   
 format:
   pdf:

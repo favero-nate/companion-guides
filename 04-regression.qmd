@@ -65,12 +65,14 @@ summary(lm(combined_score ~ schooltype, data = data))
 # a hyphen in it, which requires referring to it as 
 # `schooltype_K-8`)
 data <- data |> dummy_cols("schooltype")
-summary(lm(combined_score ~ schooltype_Elementary + `schooltype_K-8` + schooltype_Middle, data = data))
+summary(lm(combined_score ~ schooltype_Elementary + 
+  `schooltype_K-8` + schooltype_Middle, data = data))
 
 # I can see how my results look different if I 
 # change the reference category by leaving out one
 # category
-summary(lm(combined_score ~ schooltype_Elementary + schooltype_Middle, data = data))
+summary(lm(combined_score ~ schooltype_Elementary + 
+  schooltype_Middle, data = data))
 
 # if a categorical variable is stored numerically, it
 # will be (incorrectly) treated as a quantitative variable

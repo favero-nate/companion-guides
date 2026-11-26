@@ -41,7 +41,8 @@ summary(regression1)
 summary(lm(overallscore ~ combined_score, data = data))
 
 # another regression
-regression2 <- lm(overallscore ~ combined_score + ell + iep + blackhispanic + economicneedindex, data = data)
+regression2 <- lm(overallscore ~ combined_score + ell + iep +
+  blackhispanic + economicneedindex, data = data)
 summary(regression2)
 
 # if you prefer R to avoid scientific notation (when practical),
